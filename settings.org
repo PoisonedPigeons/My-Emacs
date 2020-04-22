@@ -210,6 +210,16 @@ Use TODO keywords to indicate different sequential states in the process of work
          :ensure t
      )
      #+end_src     
+*** Org agenda global keybinding
+     I set "C-c a" to open Org agenda from anywhere inside Emacs.
+     /Source: Myself/
+
+     #+begin_src emacs-lisp
+
+     (global-set-key (kbd "C-c a") 'org-agenda)
+
+     #+end_src
+
 ** Open Urls With The default web browser
 Here I tell Emacs to use the default browser (for MS Windows).
 /Source: [[https://stackoverflow.com/questions/4506249][How to make emacs org-mode open links to sites in Google Chrome]] & Myself/
