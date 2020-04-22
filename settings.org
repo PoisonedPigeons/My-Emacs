@@ -83,11 +83,14 @@ My variables as set-up by Emacs, with minor modifications on my part.
 #+BEGIN_SRC emacs-lisp
 
 (custom-set-variables
- '(custom-enabled-themes (quote (misterioso)))
+ '(custom-enabled-themes (quote (nord)))
+ '(custom-safe-themes
+   (quote
+     ("7f6d4aebcc44c264a64e714c3d9d1e903284305fd7e319e7cb73345a9994f5ef" default)))
  '(inhibit-startup-screen t)
  '(package-selected-packages
  (quote
-    (magit org-pomodoro ein go-mode dashboard doom-modeline all-the-icons org-bullets use-package elfeed pdf-tools))))
+    (nord-theme magit org-pomodoro ein go-mode dashboard doom-modeline all-the-icons org-bullets use-package elfeed pdf-tools))))
 
 #+END_SRC  
 ** Hidden menu-bar
@@ -610,3 +613,11 @@ Magit is an interface to Git implemented as an Emacs package. It aspires to be a
 )
 
 #+end_src 
+** Nord theme
+This uses use-package to install the nord theme.
+/Source: Myself/
+
+#+begin_src emacs-lisp
+(use-package nord-theme
+    :ensure t)
+#+end_src
