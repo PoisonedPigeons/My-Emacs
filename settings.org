@@ -90,7 +90,7 @@ My variables as set-up by Emacs, with minor modifications on my part.
  '(inhibit-startup-screen t)
  '(package-selected-packages
  (quote
-    (undo-tree smartparens rainbow-delimiters nord-theme magit org-pomodoro ein go-mode dashboard doom-modeline all-the-icons org-bullets use-package elfeed pdf-tools))))
+    (flycheck undo-tree smartparens rainbow-delimiters nord-theme magit org-pomodoro ein go-mode dashboard doom-modeline all-the-icons org-bullets use-package elfeed pdf-tools))))
 
 #+END_SRC  
 ** Hidden menu-bar
@@ -656,6 +656,7 @@ Here I setup Undo-tree to have better undoing, redoing and visualizing changes.
 /Source: [[https://www.youtube.com/watch?v=zL0FJ-jbDPU][undo-tree (YouTube)]] & Myself/
 
 #+begin_src emacs-lisp
+
 (use-package undo-tree
     :ensure t
     :init
@@ -665,4 +666,18 @@ Here I setup Undo-tree to have better undoing, redoing and visualizing changes.
     ("C-=" . undo-tree-redo)
     )
 )
+
+#+end_src
+** On the fly syntax checking
+Flycheck provides modern on-the-fly syntax checking extension for multiple languages for Emacs.
+/Source: [[https://github.com/flycheck/flycheck][flycheck (GitHub)]] & Myself/
+
+#+begin_src emacs-lisp
+
+(use-package flycheck
+    :ensure t
+    :init
+    (add-hook 'after-init-hook #'global-flycheck-mode)
+)
+
 #+end_src
