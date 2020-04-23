@@ -185,7 +185,7 @@ Use TODO keywords to indicate different sequential states in the process of work
 
      (setq org-tag-alist '(("@Home" . ?H) ("@Education" . ?E) ("@Work" . ?W) ("@Social" . ?S) ("@Outside" . ?O) ("URGENT" . ?U) ("CALL" . ?C) ; HEWSOUC
                            ("Family" . ?f) ("Computer" . ?c) ("Programming" . ?p) ("Music" . ?m) ("Internet" . ?x) ("Mathematics" . ?a) ("Sailing" . ?z) ; fcpmxaz
-			   ("Nature" . ?N)("Science" . ?s) ("Technology" . ?k) ("Data" . ?d) ("Games" . ?g) ("Entertainment" . ?n) ("Friends" . ?r) ("Email" . ?i) ; Nskdgnri
+			   ("Nature" . ?N)("Science" . ?s) ("Technology" . ?k) ("Reading" . ?o) ("Data" . ?d) ("Games" . ?g) ("Entertainment" . ?n) ("Friends" . ?r) ("Email" . ?i) ; Nskodgnri
 			   ("Linux" . ?l) ("Emacs" . ?e) ("TeX" . ?t) ("SuperCollider" . ?u) ("Matlab" . ?y) ("Windows" . ?w) ("\n"))) ; letuw
 
      #+end_src
