@@ -90,7 +90,7 @@ My variables as set-up by Emacs, with minor modifications on my part.
  '(inhibit-startup-screen t)
  '(package-selected-packages
  (quote
-    (rainbow-delimiters nord-theme magit org-pomodoro ein go-mode dashboard doom-modeline all-the-icons org-bullets use-package elfeed pdf-tools))))
+    (smartparens rainbow-delimiters nord-theme magit org-pomodoro ein go-mode dashboard doom-modeline all-the-icons org-bullets use-package elfeed pdf-tools))))
 
 #+END_SRC  
 ** Hidden menu-bar
@@ -618,8 +618,10 @@ This uses use-package to install the nord theme.
 /Source: Myself/
 
 #+begin_src emacs-lisp
+
 (use-package nord-theme
     :ensure t)
+
 #+end_src
 ** Rainbow delimiters
 This mode highlights delimiters such as parentheses, brackets or braces according to their depth. Each depth has it own color.
@@ -627,9 +629,25 @@ To start the mode automatically in programming modes I use 'prog-mode-hook.
 /Source: [[https://github.com/Fanael/rainbow-delimiters][rainbow-delimiters (GitHub)]] & Myself/
 
 #+begin_src emacs-lisp
+
 (use-package rainbow-delimiters
     :ensure t
     :config
     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+
 )
+#+end_src
+** Automatic insertion of pairs
+Smartparens is for the automatic insertion, wrapping navigation with user defined pairs.
+/Source: [[https://github.com/Fuco1/smartparens][Smartparens (GitHub)]] & Myself/
+
+#+begin_src emacs-lisp
+
+(use-package smartparens
+    :ensure t
+    :config
+    (require 'smartparens-config)
+    (add-hook 'prog-mode-hook #'smartparens-mode)
+)
+
 #+end_src
