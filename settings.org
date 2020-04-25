@@ -90,7 +90,7 @@ My variables as set-up by Emacs, with minor modifications on my part.
  '(inhibit-startup-screen t)
  '(package-selected-packages
  (quote
-    (flycheck undo-tree smartparens rainbow-delimiters nord-theme magit org-pomodoro ein go-mode dashboard doom-modeline all-the-icons org-bullets use-package elfeed pdf-tools))))
+    (zeal-at-point flycheck undo-tree smartparens rainbow-delimiters nord-theme magit org-pomodoro ein go-mode dashboard doom-modeline all-the-icons org-bullets use-package elfeed pdf-tools))))
 
 #+END_SRC  
 ** Hidden menu-bar
@@ -678,6 +678,19 @@ Flycheck provides modern on-the-fly syntax checking extension for multiple langu
     :ensure t
     :init
     (add-hook 'after-init-hook #'global-flycheck-mode)
+)
+
+#+end_src
+** Search word at point with Zeal
+Zeal is a simple offline API documentation browser. Zeal-at-point let's you search a word with Zeal.
+/Source: [[https://github.com/jinzhu/zeal-at-point][zeal-at-point (GitHub)]] & Myself/
+
+#+begin_src emacs-lisp
+
+(use-package zeal-at-point
+    :ensure t
+    :bind* (
+    ("C-c d" . zeal-at-point))
 )
 
 #+end_src
