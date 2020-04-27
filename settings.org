@@ -82,6 +82,8 @@ My variables as set-up by Emacs, with minor modifications on my part.
 
 #+BEGIN_SRC emacs-lisp
 
+(prefer-coding-system 'utf-8) ; Always try to use utf-8
+
 (custom-set-variables
  '(custom-enabled-themes (quote (nord)))
  '(custom-safe-themes
