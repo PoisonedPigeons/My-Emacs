@@ -474,7 +474,6 @@ My preferences for Emacs' scientific calculator (M-x calc): scientific notation 
     
     (setq calc-full-float-format '(sci 0))
     (setq calc-float-format '(sci 0))
-    (setq calc-prefer-frac t)
 )
 
 #+END_SRC
