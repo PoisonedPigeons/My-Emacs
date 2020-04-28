@@ -696,12 +696,16 @@ Zeal is a simple offline API documentation browser. Zeal-at-point let's you sear
 )
 
 #+end_src
-** Fill-column indicator
-A minor mode that graphically indicates the fill column's lenght.   I will activated in all programming modes, it can be
-activated manually for other modes using M-x fci-mode. I set C-c f to quickly activate or desactivate the indicator.
+** Fill-column value and indicator
+
+I set fill-column at 80 and add a minor mode  that graphically indicates the fill column's lenght.  I will activated in
+all programming modes, it can be activated manually for other  modes using M-x fci-mode. I set C-c f to quickly activate
+or desactivate the indicator.
 /Source: [[https://www.emacswiki.org/emacs/FillColumnIndicator][Fill Column Indicator (EmacsWiki)]] & Myself/
 
 #+begin_src emacs-lisp
+
+(setq-default fill-column 80)
 
 (use-package fill-column-indicator
     :ensure t
