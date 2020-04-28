@@ -1,3 +1,4 @@
+#    -*- mode: org; fill-column: 120; -*-
 #+TITLE: Vicente's Emacs
 #+AUTHOR: Vicente Collares
 
@@ -92,7 +93,7 @@ My variables as set-up by Emacs, with minor modifications on my part.
  '(inhibit-startup-screen t)
  '(package-selected-packages
  (quote
-    (zeal-at-point flycheck undo-tree smartparens rainbow-delimiters nord-theme magit org-pomodoro ein go-mode dashboard doom-modeline all-the-icons org-bullets use-package elfeed pdf-tools))))
+    (fill-column-indicator zeal-at-point flycheck undo-tree smartparens rainbow-delimiters nord-theme magit org-pomodoro ein go-mode dashboard doom-modeline all-the-icons org-bullets use-package elfeed pdf-tools))))
 
 #+END_SRC  
 ** Hidden menu-bar
@@ -692,6 +693,26 @@ Zeal is a simple offline API documentation browser. Zeal-at-point let's you sear
     :ensure t
     :bind* (
     ("C-c d" . zeal-at-point))
+)
+
+#+end_src
+** Fill-column indicator
+A minor mode that graphically indicates the fill column's lenght.   I will activated in all programming modes, it can be
+activated manually for other modes using M-x fci-mode. I set C-c f to quickly activate or desactivate the indicator.
+/Source: [[https://www.emacswiki.org/emacs/FillColumnIndicator][Fill Column Indicator (EmacsWiki)]] & Myself/
+
+#+begin_src emacs-lisp
+
+(use-package fill-column-indicator
+    :ensure t
+    :init
+    (add-hook 'prog-mode-hook #'fci-mode)
+    :bind* (
+    ("C-c f" . fci-mode)
+    )
+    :config
+    (setq fci-rule-color "#4C566A")
+    (setq fci-rule-width 2)
 )
 
 #+end_src
