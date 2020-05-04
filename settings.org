@@ -93,7 +93,7 @@ My variables as set-up by Emacs, with minor modifications on my part.
  '(inhibit-startup-screen t)
  '(package-selected-packages
  (quote
-    (fill-column-indicator zeal-at-point flycheck undo-tree smartparens rainbow-delimiters nord-theme magit org-pomodoro ein go-mode dashboard doom-modeline all-the-icons org-bullets use-package elfeed pdf-tools))))
+    (company-ghci flycheck-haskell haskell-mode fill-column-indicator zeal-at-point flycheck undo-tree smartparens rainbow-delimiters nord-theme magit org-pomodoro ein go-mode dashboard doom-modeline all-the-icons org-bullets use-package elfeed pdf-tools))))
 
 #+END_SRC  
 ** Hidden menu-bar
@@ -718,5 +718,30 @@ or desactivate the indicator.
     (setq fci-rule-color "#4C566A")
     (setq fci-rule-width 2)
 )
+
+#+end_src
+** Haskell support
+Haskell-mode is  a mode for  editing, developing and  debugging Haskell programs in  Emacs. I also  add flycheck-haskell
+which provides support for on the fly syntax checking (using  Cabal).
+/Source: [[https://github.com/haskell/haskell-mode][haskell-mode (GitHub)]] & Myself/
+
+#+begin_src emacs-lisp
+
+  (use-package haskell-mode
+      :ensure t)
+
+  (use-package flycheck-haskell
+      :ensure t
+      :init
+      (add-hook 'haskell-mode-hook #'flycheck-haskell-setup)
+  )
+
+  (use-package company-ghci
+      :ensure t
+      :config
+      (push 'company-ghci company-backends)
+      (add-hook 'haskell-mode-hook 'company-mode)
+      (add-hook 'haskell-interactive-mode-hook 'company-mode) ;;; Completions in REPL
+  )
 
 #+end_src
