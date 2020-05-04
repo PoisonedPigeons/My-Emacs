@@ -122,7 +122,8 @@ Hide menu bar & add a macro to show menu-bar and bind (F10).
 #+END_SRC
 ** Org-mode customization
 *** Positions of tags
-Make sure tags aren't aligned further away from the heading's text. This is my personal preference, I don't like how Emacs does it by default.
+Make sure tags  aren't aligned further away from  the heading's text. This  is my personal preference, I  don't like how
+Emacs does it by default.  
 /Source: [[https://stackoverflow.com/questions/6210840/tag-position-in-org-mode][Tag Position in Org Mode]]/
 
 #+begin_src emacs-lisp
@@ -179,9 +180,10 @@ Use TODO keywords to indicate different sequential states in the process of work
 
     #+END_SRC
 *** Setting tags
-     Here I set up my tags for my org-mode TODO entries. The one that start by the [at] symbol are locations such as [at]Home, 
-     [at]Education, [at]Work and [at]social, @Outside. I also define general and commonly used tags such as Computer, Programming, Music and etc.
-     More specific tags are going to be defined in at the beginning of the TODO file in question using "#+TAGS:".
+     Here I set  up my tags for my org-mode  TODO entries. The one that  start by the [at] symbol are  locations such as
+     [at]Home, [at]Education, [at]Work  and [at]social, @Outside. I also  define general and commonly used  tags such as
+     Computer, Programming, Music and etc.   More specific tags are going to be defined in at  the beginning of the TODO
+     file in question using "#+TAGS:".
      /Source: Org manual & Myself/
 
      #+begin_src emacs-lisp
@@ -193,7 +195,8 @@ Use TODO keywords to indicate different sequential states in the process of work
 
      #+end_src
 *** Setting up capture
-     Here I set up capture for org mode using the keybinding C-cc (the same keybinding as in the org manual). I also create a TODO template called Task.
+     Here I set  up capture for org mode  using the keybinding C-cc (the same  keybinding as in the org  manual). I also
+     create a TODO template called Task.
      /Source: Org manual & Myself/
      
      #+begin_src emacs-lisp
@@ -329,7 +332,8 @@ This is my configuration for Elfeed (an Rss/Atom Reader) with a few keybindings 
 
 #+END_SRC
 ** Disable annoying alarm bell
-Disable the extemely annoying alarm bell in case it isn't already done on the system, this doesn't replace the bell by a visual one (flashing).
+Disable the extemely annoying alarm bell in case it isn't already done on the system, this doesn't replace the bell by a
+visual one (flashing).
 /Source: [[https://emacs.stackexchange.com/questions/28906/][how to switch off the sounds]]/
 
 #+BEGIN_SRC emacs-lisp
@@ -339,7 +343,9 @@ Disable the extemely annoying alarm bell in case it isn't already done on the sy
 #+END_SRC
 
 ** Eww (an Emacs-based web browser)
-Eww is a emacs-based web browser that can display images (in GUI emacs only), here I've configured it and set a keybinding to access it ("C-c b"). 
+Eww is  a emacs-based  web browser  that can  display images  (in GUI emacs  only), here  I've configured  it and  set a
+keybinding to access it ("C-c b").
+/Source: Myself/
 
 #+BEGIN_SRC emacs-lisp 
 
@@ -353,8 +359,9 @@ Eww is a emacs-based web browser that can display images (in GUI emacs only), he
 
 #+END_SRC
 ** Pdf-tools (a replacement for Docview)
-Pdf-tools is a replacement for Docview (which I don't like), here I configure it using use-package.
-Note: I've disabled this for now since it doesn't work inside of wsl and I don't need yet another pdf reader. - Vicente (2020-01-19 at 13:35)
+Pdf-tools is a replacement for Docview (which I don't like), here I configure it using use-package.  Note: I've disabled
+this for  now since it doesn't  work inside of  wsl and I don't  need yet another  pdf reader. - Vicente  (2020-01-19 at
+13:35)
 /Source: [[https://github.com/politza/pdf-tools/blob/master/README.org][pdf-tools (Github)]] & Myself/
 
 #+BEGIN_SRC emacs-lisp
@@ -367,7 +374,8 @@ Note: I've disabled this for now since it doesn't work inside of wsl and I don't
 
 #+END_SRC
 ** Confirm before exiting Emacs
-I've accidentally exited emacs many times, so I've set the variable "confirm-kill-emacs" to "'y-or-n-p" so that emacs always confirms before exiting. 
+I've accidentally exited  emacs many times, so I've  set the variable "confirm-kill-emacs" to "'y-or-n-p"  so that emacs
+always confirms before exiting.
 /Source: [[https://stackoverflow.com/questions/21192111][Prevent Emacs from exiting once the exit procedure has initiated?]]/
 
 #+BEGIN_SRC emacs-lisp
@@ -465,8 +473,10 @@ Ignore 'suspend-frame keybindings since I find them annoying & useless and somet
 #+END_SRC
 
 ** Scientific Calculator Settings (M-x calc)
-My preferences for Emacs' scientific calculator (M-x calc): scientific notation for float numbers and display as fraction when possible.   
+My  preferences for  Emacs' scientific  calculator (M-x  calc): scientific  notation for  float numbers  and display  as
+fraction when possible.
 /Source: Myself & Emacs autogen/
+
 #+BEGIN_SRC emacs-lisp
 
 (use-package calc
@@ -479,8 +489,9 @@ My preferences for Emacs' scientific calculator (M-x calc): scientific notation 
 
 #+END_SRC
 ** Use the forward and backward buttons on my mouse to cycle between buffers
-My "mouse", which is actually a trackball (Logitech M570), has a forward and backwards button which serves to cycle between buffers in Emacs. 
-Note: According to my testing the forward & backward mouse buttons don't work inside the command line, therefore I only set these keys on GUI mode.  
+My "mouse",  which is actually a  trackball (Logitech M570),  has a forward and  backwards button which serves  to cycle
+between buffers  in Emacs.  Note: According  to my testing  the forward & backward  mouse buttons don't work  inside the
+command line, therefore I only set these keys on GUI mode.  
 /Source: Myself & Elisp manual/
 
 #+BEGIN_SRC emacs-lisp
@@ -543,7 +554,9 @@ YASnippet is a template system for Emacs.
   )
 #+END_SRC
 ** which-key
-which-key is a minor mode for Emacs that displays the key bindings following your currently entered incomplete command (a prefix) in a popup.
+which-key is a minor mode  for Emacs that displays the key bindings following  your currently entered incomplete command
+(a prefix) in a popup.
+/Source: [[https://github.com/justbur/emacs-which-key][Which-key (GitHub)]] & Myself/
 
 #+BEGIN_SRC emacs-lisp
   (use-package which-key
@@ -626,8 +639,8 @@ This uses use-package to install the nord theme.
 
 #+end_src
 ** Rainbow delimiters
-This mode highlights delimiters such as parentheses, brackets or braces according to their depth. Each depth has it own color.
-To start the mode automatically in programming modes I use 'prog-mode-hook.
+This mode highlights delimiters such as parentheses, brackets or  braces according to their depth. Each depth has it own
+color.  To start the mode automatically in programming modes I use 'prog-mode-hook.
 /Source: [[https://github.com/Fanael/rainbow-delimiters][rainbow-delimiters (GitHub)]] & Myself/
 
 #+begin_src emacs-lisp
@@ -697,7 +710,6 @@ Zeal is a simple offline API documentation browser. Zeal-at-point let's you sear
 
 #+end_src
 ** Fill-column value and indicator
-
 I set fill-column at 80 and add a minor mode  that graphically indicates the fill column's lenght.  I will activated in
 all programming modes, it can be activated manually for other  modes using M-x fci-mode. I set C-c f to quickly activate
 or desactivate the indicator.
