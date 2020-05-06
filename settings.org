@@ -663,6 +663,7 @@ Smartparens is for the automatic insertion, wrapping navigation with user define
     :config
     (require 'smartparens-config)
     (add-hook 'prog-mode-hook #'smartparens-mode)
+    (add-hook 'haskell-interactive-mode-hook #'smartparens-mode)
 )
 
 #+end_src
