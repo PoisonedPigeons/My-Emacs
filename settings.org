@@ -93,7 +93,7 @@ My variables as set-up by Emacs, with minor modifications on my part.
  '(inhibit-startup-screen t)
  '(package-selected-packages
  (quote
-    (move-text restart-emacs company-ghci flycheck-haskell haskell-mode fill-column-indicator zeal-at-point flycheck undo-tree smartparens rainbow-delimiters nord-theme magit org-pomodoro ein go-mode dashboard doom-modeline all-the-icons org-bullets use-package elfeed pdf-tools))))
+    (racket-mode move-text restart-emacs company-ghci flycheck-haskell haskell-mode fill-column-indicator zeal-at-point flycheck undo-tree smartparens rainbow-delimiters nord-theme magit org-pomodoro ein go-mode dashboard doom-modeline all-the-icons org-bullets use-package elfeed pdf-tools))))
 
 #+END_SRC  
 ** Hidden menu-bar
@@ -781,3 +781,13 @@ Move-text allows you to move the current line/region using "M-up" and "M-down" o
       (move-text-default-bindings)
   )
 #+end_src 
+** Racket Lisp
+Racket-mode adds support for racket code editing, REPL, auto-completion and more. Racket is a Lisp based on scheme.
+/Source: [[https://www.racket-mode.com/][Racket-mode.com]] & Myself/
+
+#+begin_src emacs-lisp
+  (use-package racket-mode
+      :ensure t
+      :config
+      (setq racket-program "c:/Program Files/Racket/Racket.exe"))
+#+end_src
