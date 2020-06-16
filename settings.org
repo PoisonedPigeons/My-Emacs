@@ -525,14 +525,13 @@ This package extends Emacs with support for interactive programming in Common Li
 /Source:[[https://github.com/slime/slime][Slime (Github)]] and myself/
 
 #+BEGIN_SRC emacs-lisp
-; Can't get this to work, please fix later
-  (use-package slime
-    :ensure t
-    :config
-    ;(setq inferior-lisp-program "/usr/bin/sbcl")
-    ;(add-to-list 'load-path "/usr/share/emacs/site-lisp/slime/")
-    ;(slime-setup '(slime-fancy))
-  )
+  ; Works on Windows for me
+    (use-package slime
+      :ensure t
+      :config
+      (setq slime-lisp-implementations
+	    '((sbcl ("C:\\Program Files\\Steel Bank Common Lisp\\2.0.0\\sbcl.exe" "--core" "C:\\Program Files\\Steel Bank Common Lisp\\2.0.0\\sbcl.core"))))
+    )
 #+END_SRC
 ** YASnippet
 YASnippet is a template system for Emacs.
