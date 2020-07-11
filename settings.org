@@ -802,4 +802,7 @@ Here I tell Emacs to not include the bookmarks or the agenda file to the recentl
 (add-to-list 'recentf-exclude
              (expand-file-name "~/Documents/Org/Todo.org"))
 
+(add-to-list 'recentf-exclude
+             (expand-file-name "~/quicklisp/*"))
+
 #+end_src
