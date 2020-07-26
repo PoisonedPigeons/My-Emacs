@@ -457,22 +457,6 @@ Ignore 'suspend-frame keybindings since I find them annoying & useless and somet
 
 #+END_SRC
 
-** Scientific Calculator Settings (M-x calc)
-My  preferences for  Emacs' scientific  calculator (M-x  calc): scientific  notation for  float numbers  and display  as
-fraction when possible.
-/Source: Myself & Emacs autogen/
-
-#+BEGIN_SRC emacs-lisp
-
-(use-package calc
-    :ensure t
-    :config
-    
-    (setq calc-full-float-format '(sci 0))
-    (setq calc-float-format '(sci 0))
-)
-
-#+END_SRC
 ** Use the forward and backward buttons on my mouse to cycle between buffers
 My "mouse",  which is actually a  trackball (Logitech M570),  has a forward and  backwards button which serves  to cycle
 between buffers  in Emacs.  Note: According  to my testing  the forward & backward  mouse buttons don't work  inside the
