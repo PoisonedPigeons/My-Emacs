@@ -78,7 +78,7 @@ My variables as set-up by Emacs, with minor modifications on my part.
  '(inhibit-startup-screen t)
  '(package-selected-packages
  (quote
-    (racket-mode move-text restart-emacs company-ghci flycheck-haskell haskell-mode fill-column-indicator zeal-at-point flycheck undo-tree smartparens rainbow-delimiters nord-theme magit org-pomodoro ein go-mode dashboard doom-modeline all-the-icons org-bullets use-package elfeed pdf-tools))))
+    (cider racket-mode move-text restart-emacs company-ghci flycheck-haskell haskell-mode fill-column-indicator zeal-at-point flycheck undo-tree smartparens rainbow-delimiters nord-theme magit org-pomodoro ein go-mode dashboard doom-modeline all-the-icons org-bullets use-package elfeed pdf-tools))))
 
 #+END_SRC  
 ** Hidden menu-bar
@@ -774,4 +774,13 @@ Here I tell Emacs to not include the bookmarks or the agenda file to the recentl
 (add-to-list 'recentf-exclude
              (expand-file-name "~/quicklisp/*"))
 
+#+end_src
+** Clojure Lisp
+Cider  adds  support  for  interactive  programming  in  Clojure. It  can  do  compilation,  debugging,  definition  and
+documentation lookup, running tests and much more.
+/Source: [[https://github.com/clojure-emacs/cider][cider (GitHub)]]/
+
+#+begin_src emacs-lisp
+  (use-package cider
+      :ensure t)
 #+end_src
