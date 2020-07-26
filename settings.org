@@ -62,21 +62,6 @@ Default Configuration for company-mode from their site. I also load a few backen
     
 #+END_SRC
 
-** Bind <F8> to "M-x Compile"
-Binding <F8> to "M-x Compile", the macro's name is "Compile".
-/Source: Myself & Emacs manual/
-
-#+BEGIN_SRC emacs-lisp
-
-;; Macro "Compile" = "M-x compile"
-(fset 'Compile
-    "\C-[xcompile")
-
-;; Setting key binding
-(global-set-key (kbd "<f8>") 'Compile)
-
-#+END_SRC 
-
 ** My variables
 My variables as set-up by Emacs, with minor modifications on my part.
 /Source: Emacs & Myself/
