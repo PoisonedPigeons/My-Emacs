@@ -278,10 +278,11 @@ This is my configuration for Elfeed (an Rss/Atom Reader) with a few keybindings 
 
 #+BEGIN_SRC emacs-lisp
 
-(global-set-key (kbd "C-c w") 'elfeed) ; Bind C-x w to elfeed
-
 (use-package elfeed
     :ensure t
+    :bind* (
+    ("C-c w" . elfeed)
+    )
     :bind (
     
     :map elfeed-search-mode-map
