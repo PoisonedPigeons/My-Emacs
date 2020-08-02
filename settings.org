@@ -32,6 +32,7 @@ No backup or autosave (**my personal preference**).
 (setq auto-save-default nil)
 
 #+END_SRC
+
 ** Line Numbering and No Final Newline
 If Emacs version <= 26.0.50, then number lines.
 /Source: [[https://www.emacswiki.org/emacs/LineNumbers][emacswiki.org - Line Numbers]]/
@@ -45,6 +46,7 @@ If Emacs version <= 26.0.50, then number lines.
 (setq mode-require-final-newline nil)
 
 #+END_SRC
+
 ** Company-mode Configuration
 Default Configuration for company-mode from their site. I also load a few backends for company (such as company-math).
 /Source: [[https://company-mode.github.io/][company-mode for Emacs]]/
@@ -109,6 +111,7 @@ Hide menu bar & add a macro to show menu-bar and bind (F10).
 (global-set-key [f10] 'Menu-bar-open) ; Bind Macro "menu-bar-open" to F10 
 
 #+END_SRC
+
 ** Org-mode customization
 *** Positions of tags
 Make sure tags  aren't aligned further away from  the heading's text. This  is my personal preference, I  don't like how
@@ -122,32 +125,33 @@ Emacs does it by default.
 #+end_src
 
 *** Todo keywords as workflow states
-Use TODO keywords to indicate different sequential states in the process of working on an item. I use:
-  - TODO for tasks to be completed (fast access letter *t* or *T*).
-  - WAITING for tasks that aren't currently doable because of someone or something (fast access letter *w* or *W*).
-  - DONE for tasks which are complete (fast access letter *d* or *D*).
-  - MISSED for tasks which deadline has passed (fast access letter *m* or *M*).
-  - CANCELED for tasks which are canceled (fast access letter *c* or *C*).
-  - OBSOLETE for taks that are no longer necessary and/or possible (fast access letter *o* or *O*).
-/Source: Org-mode manual section 5.2.1 and Myself/
+  Use TODO keywords to indicate different sequential states in the process of working on an item. I use:
+    - TODO for tasks to be completed (fast access letter *t* or *T*).
+    - WAITING for tasks that aren't currently doable because of someone or something (fast access letter *w* or *W*).
+    - DONE for tasks which are complete (fast access letter *d* or *D*).
+    - MISSED for tasks which deadline has passed (fast access letter *m* or *M*).
+    - CANCELED for tasks which are canceled (fast access letter *c* or *C*).
+    - OBSOLETE for taks that are no longer necessary and/or possible (fast access letter *o* or *O*).
+  /Source: Org-mode manual section 5.2.1 and Myself/
 
-#+begin_src emacs-lisp
+  #+begin_src emacs-lisp
 
-(setq org-todo-keywords
-    '((sequence "TODO(t/T)" "WAITING(w/W)" "|" "DONE(d/D)" "MISSED(m/M)" "CANCELED(c/C)" "OBSOLETE(o/O)")))
+  (setq org-todo-keywords
+      '((sequence "TODO(t/T)" "WAITING(w/W)" "|" "DONE(d/D)" "MISSED(m/M)" "CANCELED(c/C)" "OBSOLETE(o/O)")))
 
-(setq org-todo-keyword-faces
-    '(("TODO" . (:foreground "deep pink" :weight bold))
-    ("WAITING" . (:foreground "deep sky blue" :weight bold))
-    ("DONE" . (:foreground "lime green" :weight bold))
-    ("MISSED" . (:foreground "red" :weight bold))
-    ("CANCELED" . (:foreground "dark orange" :weight bold))
-    ("OBSOLETE" . (:foreground "AntiqueWhite3" :weight bold))))
+  (setq org-todo-keyword-faces
+      '(("TODO" . (:foreground "deep pink" :weight bold))
+      ("WAITING" . (:foreground "deep sky blue" :weight bold))
+      ("DONE" . (:foreground "lime green" :weight bold))
+      ("MISSED" . (:foreground "red" :weight bold))
+      ("CANCELED" . (:foreground "dark orange" :weight bold))
+      ("OBSOLETE" . (:foreground "AntiqueWhite3" :weight bold))))
 
-#+end_src
+  #+end_src
 
 *** Locations of important files or directories
     Here are the locations of important files/directories to Org. I use setq for each one.
+    
     #+begin_src emacs-lisp
     
     (setq org-agenda-files (list "~/Documents/Org/Todo.org")) ; I only have one agenda file
@@ -155,6 +159,7 @@ Use TODO keywords to indicate different sequential states in the process of work
     ;(setq org-default-notes-file (concat org-directory "/Todo.org"))
 
     #+end_src
+
 *** Org-mode bullets
     Load [[https://github.com/emacsorphanage/org-bullets/]["org-bullets mode"]], which was installed using [[https://melpa.org/][MELPA]].
     /Source: [[https://github.com/emacsorphanage/org-bullets/blob/master/README.md]["org-bullets mode" - README.md]]/
@@ -168,6 +173,7 @@ Use TODO keywords to indicate different sequential states in the process of work
     )
 
     #+END_SRC
+
 *** Setting tags
      Here I set  up my tags for my org-mode  TODO entries. The one that  start by the [at] symbol are  locations such as
      [at]Home, [at]Education, [at]Work  and [at]social, @Outside. I also  define general and commonly used  tags such as
@@ -183,6 +189,7 @@ Use TODO keywords to indicate different sequential states in the process of work
 			   ("Linux" . ?l) ("Emacs" . ?e) ("TeX" . ?t) ("SuperCollider" . ?u) ("Matlab" . ?y) ("Windows" . ?w) ("\n"))) ; letuw
 
      #+end_src
+
 *** Setting up capture
      Here I set  up capture for org mode  using the keybinding C-cc (the same  keybinding as in the org  manual). I also
      create a TODO template called Task.
@@ -199,15 +206,19 @@ Use TODO keywords to indicate different sequential states in the process of work
      (setq-default org-capture-bookmark nil)
 
      #+end_src
+
 *** Org-Pomodoro
      This adds basic support for Pomodoro technique inside of Emacs' org-mode.
      /Source: [[https://github.com/marcinkoziej/org-pomodoro][Org-Pomodoro (Github)]] & Myself/
      
      #+begin_src emacs-lisp
+
      (use-package org-pomodoro
          :ensure t
      )
-     #+end_src     
+
+     #+end_src
+     
 *** Org agenda global keybinding
      I set "C-c a" to open Org agenda from anywhere inside Emacs.
      /Source: Myself/
@@ -239,6 +250,7 @@ Hide GUI emacs toolbar & scrollbar, the settings are conditional since problems 
     (toggle-scroll-bar -1))
 
 #+END_SRC
+
 ** Change font to "Consolas" when using emacs from GUI
 Change emacs font to "Consolas" and set font size to 10pt. This is only run when using emacs from GUI because 
 of personal preference, when in the tty I want to use the terminal emulator's default font.
@@ -250,6 +262,7 @@ of personal preference, when in the tty I want to use the terminal emulator's de
     (set-face-attribute 'default nil :family "Consolas" :height 105))
 
 #+END_SRC
+
 ** Always open emacs GUI maximized
 Always open emacs GUI as a maximized (fullscreen) window.
 /Source: [[https://emacs.stackexchange.com/questions/2999/][How to maximize my Emacs frame on start-up?]]/
@@ -259,6 +272,7 @@ Always open emacs GUI as a maximized (fullscreen) window.
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 #+END_SRC
+
 ** Rss/ATOM reader (elfeed)
 This is my configuration for Elfeed (an Rss/Atom Reader) with a few keybindings and using "use-package". 
 
@@ -320,6 +334,7 @@ This is my configuration for Elfeed (an Rss/Atom Reader) with a few keybindings 
 )
 
 #+END_SRC
+
 ** Disable annoying alarm bell
 Disable the extemely annoying alarm bell in case it isn't already done on the system, this doesn't replace the bell by a
 visual one (flashing).
@@ -347,6 +362,7 @@ keybinding to access it ("C-c b").
 )
 
 #+END_SRC
+
 ** Pdf-tools (a replacement for Docview)
 Pdf-tools is a replacement for Docview (which I don't like), here I configure it using use-package.  Note: I've disabled
 this for  now since it doesn't  work inside of  wsl and I don't  need yet another  pdf reader. - Vicente  (2020-01-19 at
@@ -362,6 +378,7 @@ this for  now since it doesn't  work inside of  wsl and I don't  need yet anothe
 )
 
 #+END_SRC
+
 ** Confirm before exiting Emacs
 I've accidentally exited  emacs many times, so I've  set the variable "confirm-kill-emacs" to "'y-or-n-p"  so that emacs
 always confirms before exiting.
@@ -372,6 +389,7 @@ always confirms before exiting.
 (setq confirm-kill-emacs 'y-or-n-p)
 
 #+END_SRC
+
 ** Add Icons to emacs (all-the-icons)
 All-the-icons is used by emacs-dashboard & others to display icons. 
 /Source: Myself/
@@ -450,6 +468,7 @@ I setup a custom modeline using the doom-modeline theme and customize it.
 )
 
 #+END_SRC
+
 ** Disable 'suspend-frame keybindings (Ctrl-z & Ctrl-x Ctrl-z)
 Ignore 'suspend-frame keybindings since I find them annoying & useless and sometimes fat-finger them.
 /Source: [[https://stackoverflow.com/questions/7243155/cant-seem-to-get-rid-of-ctrl-x-ctrl-z-key-binding-in-emacs-for-minimizing-windo][Can't seem to get rid of Ctrl-x Ctrl-z Key Binding in Emacs for minimizing window]] & Myself/
@@ -474,11 +493,13 @@ command line, therefore I only set these keys on GUI mode.
     (global-set-key [mouse-5] 'next-buffer))
 
 #+END_SRC
+
 ** Ledger-mode (Bookkeeping)
 Ledger is a command-line based double-entry bookkeeping application, and this is helper code to use Ledger with Emacs.
 /Source: [[https://github.com/ledger/ledger-mode/tree/47a186ecc3f7e270c2eb93cbe659e5fa07caeff6][Ledger-mode (Github)]] & myself/
 
 #+BEGIN_SRC emacs-lisp
+
 (use-package ledger-mode
     :ensure t
     :bind (
@@ -492,12 +513,15 @@ Ledger is a command-line based double-entry bookkeeping application, and this is
     :config
     (setq ledger-clear-whole-transactions 1)
 )
+
 #+END_SRC
+
 ** Slime (Superior Lisp Interaction Mode)
 This package extends Emacs with support for interactive programming in Common Lisp. 
 /Source:[[https://github.com/slime/slime][Slime (Github)]] and myself/
 
 #+BEGIN_SRC emacs-lisp
+
   ; Works on Windows for me
     (use-package slime
       :ensure t
@@ -505,12 +529,15 @@ This package extends Emacs with support for interactive programming in Common Li
       (setq slime-lisp-implementations
 	    '((sbcl ("C:\\Program Files\\Steel Bank Common Lisp\\2.0.0\\sbcl.exe" "--core" "C:\\Program Files\\Steel Bank Common Lisp\\2.0.0\\sbcl.core"))))
     )
+
 #+END_SRC
+
 ** YASnippet
 YASnippet is a template system for Emacs.
 /Source: [[https://github.com/joaotavora/yasnippet][YASnippet (Github)]] and myself/
 
 #+BEGIN_SRC emacs-lisp
+
 ; Can't get this to work, please fix later
   (global-set-key (kbd "C-c s") 'yas-insert-snippet)
   
@@ -524,36 +551,46 @@ YASnippet is a template system for Emacs.
     :ensure t
     :after yasnippet    
   )
+
 #+END_SRC
+
 ** which-key
 which-key is a minor mode  for Emacs that displays the key bindings following  your currently entered incomplete command
 (a prefix) in a popup.
 /Source: [[https://github.com/justbur/emacs-which-key][Which-key (GitHub)]] & Myself/
 
 #+BEGIN_SRC emacs-lisp
+
   (use-package which-key
     :ensure t
     :config
     (which-key-mode)
     (which-key-setup-side-window-bottom)
     )
+
 #+END_SRC
+
 ** Ess (Emacs Speaks Statistics)
 Here I tell Emacs that it requires Ess (a.k.a Emacs Speaks Statistics).
 /Source: Myself/
 
 #+BEGIN_SRC emacs-lisp
+
   (use-package ess
     :ensure t)
+
 #+END_SRC
+
 ** AUCTeX and Other Typesetting things
 This tells Emacs to require AUCTeX. AUCTeX is an extensible package for writing and formatting TeX files in Emacs.
 /Source: [[https://en.wikipedia.org/wiki/AUCTeX][Wikipedia]] & Myself/
 
 #+begin_src emacs-lisp
+
   (use-package auctex
   :defer t  
   :ensure t)
+
 #+end_src
 
 I also tell Emacs to require Markdown mode.
@@ -570,22 +607,29 @@ I tell Emacs to require htmlize. This package is used when generating html pages
   (use-package htmlize
     :ensure t)
 #+end_src
+
 ** Go-mode
 Go-mode is a major mode for the Go programming language.
 /Source: Myself/
 
 #+begin_src emacs-lisp
+
   (use-package go-mode
     :ensure t)
+
 #+end_src
+
 ** Emacs IPython Notebook (EIN)
 This lets us run Jupyter (formerly IPython) notebooks within Emacs.
 /Source: [[https://github.com/millejoh/emacs-ipython-notebook][Ein (GitHub)]] & Myself/
 
 #+begin_src emacs-lisp
+
 (use-package ein
     :ensure t)
+
 #+end_src
+
 ** Magit (Git porcelain)
 Magit is an interface to Git implemented as an Emacs package. It aspires to be a complete Git porcelain.
 /Source: [[https://github.com/magit/magit][Magit (GitHub)]] & myself/
@@ -599,7 +643,8 @@ Magit is an interface to Git implemented as an Emacs package. It aspires to be a
     )
 )
 
-#+end_src 
+#+end_src
+ 
 ** Nord theme
 This uses use-package to install the nord theme.
 /Source: Myself/
@@ -610,6 +655,7 @@ This uses use-package to install the nord theme.
     :ensure t)
 
 #+end_src
+
 ** Rainbow delimiters
 This mode highlights delimiters such as parentheses, brackets or  braces according to their depth. Each depth has it own
 color.  To start the mode automatically in programming modes I use 'prog-mode-hook.
@@ -623,7 +669,9 @@ color.  To start the mode automatically in programming modes I use 'prog-mode-ho
     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
 
 )
+
 #+end_src
+
 ** Automatic insertion of pairs
 Smartparens is for the automatic insertion, wrapping navigation with user defined pairs.
 /Source: [[https://github.com/Fuco1/smartparens][Smartparens (GitHub)]] & Myself/
@@ -639,6 +687,7 @@ Smartparens is for the automatic insertion, wrapping navigation with user define
 )
 
 #+end_src
+
 ** Better undoing and redoing using Undo-tree
 Here I setup Undo-tree to have better undoing, redoing and visualizing changes.
 /Source: [[https://www.youtube.com/watch?v=zL0FJ-jbDPU][undo-tree (YouTube)]] & Myself/
@@ -656,6 +705,7 @@ Here I setup Undo-tree to have better undoing, redoing and visualizing changes.
 )
 
 #+end_src
+
 ** On the fly syntax checking
 Flycheck provides modern on-the-fly syntax checking extension for multiple languages for Emacs.
 /Source: [[https://github.com/flycheck/flycheck][flycheck (GitHub)]] & Myself/
@@ -669,6 +719,7 @@ Flycheck provides modern on-the-fly syntax checking extension for multiple langu
 )
 
 #+end_src
+
 ** Search word at point with Zeal
 Zeal is a simple offline API documentation browser. Zeal-at-point let's you search a word with Zeal.
 /Source: [[https://github.com/jinzhu/zeal-at-point][zeal-at-point (GitHub)]] & Myself/
@@ -682,6 +733,7 @@ Zeal is a simple offline API documentation browser. Zeal-at-point let's you sear
 )
 
 #+end_src
+
 ** Fill-column value and indicator
 I set fill-column at 80 and add a minor mode  that graphically indicates the fill column's lenght.  I will activated in
 all programming modes, it can be activated manually for other  modes using M-x fci-mode. I set C-c f to quickly activate
@@ -705,6 +757,7 @@ or desactivate the indicator.
 )
 
 #+end_src
+
 ** Haskell support
 Haskell-mode is  a mode for  editing, developing and  debugging Haskell programs in  Emacs. I also  add flycheck-haskell
 which provides support for on the fly syntax checking (using  Cabal).
@@ -730,39 +783,49 @@ which provides support for on the fly syntax checking (using  Cabal).
   )
 
 #+end_src
+
 ** Restart Emacs from within itself
 Restart Emacs from within Emacs itself using the keybinding "C-x c" (which kinda resembles to "C-x C-c").
 /Source: [[https://github.com/iqbalansari/restart-emacs][Restart-Emacs (GitHub)]] & Myself/
 
 #+begin_src emacs-lisp
+
   (use-package restart-emacs
       :ensure t
       :bind* (
       ("C-x c" . #'restart-emacs)
       )
   )
+
 #+end_src
+
 ** Move the current line
 Move-text allows you to move the current line/region using "M-up" and "M-down" outside Org-mode.
 /Source: [[https://github.com/emacsfodder/move-text][move-text (GitHub)]] & Myself/
 
 #+begin_src emacs-lisp
+
   (use-package move-text
       :ensure t
       :config
       (move-text-default-bindings)
   )
-#+end_src 
+
+#+end_src
+ 
 ** Racket Lisp
 Racket-mode adds support for racket code editing, REPL, auto-completion and more. Racket is a Lisp based on scheme.
 /Source: [[https://www.racket-mode.com/][Racket-mode.com]] & Myself/
 
 #+begin_src emacs-lisp
+
   (use-package racket-mode
       :ensure t
       :config
       (setq racket-program "c:/Program Files/Racket/Racket.exe"))
+
 #+end_src
+
 ** Recentf: ignore bookmarks and agenda
 Here I tell Emacs to not include the bookmarks or the agenda file to the recently opened files.
 /Source: [[https://emacs.stackexchange.com/questions/27139/ignoring-specific-files-in-recentf-mode][Ignoring specific files in recentf mode (emacs.stackexchange.com)]]/
@@ -779,6 +842,7 @@ Here I tell Emacs to not include the bookmarks or the agenda file to the recentl
              (expand-file-name "~/quicklisp/*"))
 
 #+end_src
+
 ** Clojure Lisp
 Cider  adds  support  for  interactive  programming  in  Clojure. It  can  do  compilation,  debugging,  definition  and
 documentation lookup, running tests and much more.
@@ -790,6 +854,7 @@ documentation lookup, running tests and much more.
       :ensure t)
 
 #+end_src
+
 ** PHP programming
 php-mode Is a powerful and flexible Emacs major mode for the PHP programming language.
 /Source: [[https://github.com/emacs-php/php-mode][php-mode (GitHub)]]/
@@ -812,7 +877,8 @@ company-php Is a company back-end for PHP, this provides auto-completion.
     (push 'company-ac-php-backend company-backends)
   )
 
-#+end_src 
+#+end_src
+ 
 ** Web development
 web-mode.el is an Emacs major-mode for editing web templates.
 /Source: [[http://web-mode.org/][web-mode.org]]/
