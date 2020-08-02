@@ -781,6 +781,8 @@ documentation lookup, running tests and much more.
 /Source: [[https://github.com/clojure-emacs/cider][cider (GitHub)]]/
 
 #+begin_src emacs-lisp
+
   (use-package cider
       :ensure t)
+
 #+end_src
