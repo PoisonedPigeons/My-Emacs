@@ -78,7 +78,7 @@ My variables as set-up by Emacs, with minor modifications on my part.
  '(inhibit-startup-screen t)
  '(package-selected-packages
  (quote
-    (cider racket-mode move-text restart-emacs company-ghci flycheck-haskell haskell-mode fill-column-indicator zeal-at-point flycheck undo-tree smartparens rainbow-delimiters nord-theme magit org-pomodoro ein go-mode dashboard doom-modeline all-the-icons org-bullets use-package elfeed pdf-tools))))
+    (company-php php-mode cider racket-mode move-text restart-emacs company-ghci flycheck-haskell haskell-mode fill-column-indicator zeal-at-point flycheck undo-tree smartparens rainbow-delimiters nord-theme magit org-pomodoro ein go-mode dashboard doom-modeline all-the-icons org-bullets use-package elfeed pdf-tools))))
 
 #+END_SRC  
 ** Hidden menu-bar
@@ -786,3 +786,26 @@ documentation lookup, running tests and much more.
       :ensure t)
 
 #+end_src
+** PHP programming
+php-mode Is a powerful and flexible Emacs major mode for the PHP programming language.
+/Source: [[https://github.com/emacs-php/php-mode][php-mode (GitHub)]]/
+
+#+begin_src emacs-lisp
+
+  (use-package php-mode
+      :ensure t)
+
+#+end_src
+
+company-php Is a company back-end for PHP, this provides auto-completion.
+/Source: [[https://github.com/xcwen/ac-php][ac-php (GitHub)]]/
+
+#+begin_src emacs-lisp
+
+  (use-package company-php
+    :ensure t
+    :config
+    (push 'company-ac-php-backend company-backends)
+  )
+
+#+end_src 
