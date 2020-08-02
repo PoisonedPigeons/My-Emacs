@@ -78,10 +78,10 @@ My variables as set-up by Emacs, with minor modifications on my part.
  '(inhibit-startup-screen t)
  '(package-selected-packages
  (quote
-    (company-php php-mode cider racket-mode move-text restart-emacs company-ghci 
-    flycheck-haskell haskell-mode fill-column-indicator zeal-at-point flycheck undo-tree 
-    smartparens rainbow-delimiters nord-theme magit org-pomodoro ein go-mode dashboard 
-    doom-modeline all-the-icons org-bullets use-package elfeed pdf-tools))))
+    (js2-mode web-mode company-php php-mode cider racket-mode move-text restart-emacs company-ghci 
+    flycheck-haskell haskell-mode fill-column-indicator zeal-at-point flycheck undo-tree smartparens 
+    rainbow-delimiters nord-theme magit org-pomodoro ein go-mode dashboard doom-modeline all-the-icons 
+    org-bullets use-package elfeed pdf-tools))))
 
 #+END_SRC
   
@@ -813,3 +813,33 @@ company-php Is a company back-end for PHP, this provides auto-completion.
   )
 
 #+end_src 
+** Web development
+web-mode.el is an Emacs major-mode for editing web templates.
+/Source: [[http://web-mode.org/][web-mode.org]]/
+
+#+begin_src emacs-lisp
+
+  (use-package web-mode
+    :ensure t
+    :mode (
+	   ("\\.html?\\'" . web-mode)
+	   ("\\.phtml\\'" . web-mode)
+	   ("\\.tpl\\.php\\'" . web-mode)
+	   ("\\.[agj]sp\\'" . web-mode)
+	   ("\\.as[cp]x\\'" . web-mode)
+	   ("\\.erb\\'" . web-mode)
+	   ("\\.mustache\\'" . web-mode)
+	   ("\\.djhtml\\'" . web-mode)))
+
+#+end_src
+
+js2-mode provides improved JavaScript editing support for Emacs.
+/Source: [[https://github.com/mooz/js2-mode/][js2-mode (GitHub)]]/
+
+#+begin_src emacs-lisp
+
+  (use-package js2-mode
+    :ensure t
+    :mode "\\.js\\'")
+
+#+end_src
