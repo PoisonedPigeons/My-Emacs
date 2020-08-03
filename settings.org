@@ -80,7 +80,7 @@ My variables as set-up by Emacs, with minor modifications on my part.
  '(inhibit-startup-screen t)
  '(package-selected-packages
  (quote
-    (js2-mode web-mode company-php php-mode cider racket-mode move-text restart-emacs company-ghci 
+    (elfeed-org js2-mode web-mode company-php php-mode cider racket-mode move-text restart-emacs company-ghci 
     flycheck-haskell haskell-mode fill-column-indicator zeal-at-point flycheck undo-tree smartparens 
     rainbow-delimiters nord-theme magit org-pomodoro ein go-mode dashboard doom-modeline all-the-icons 
     org-bullets use-package elfeed pdf-tools))))
@@ -283,48 +283,13 @@ This is my configuration for Elfeed (an Rss/Atom Reader) with a few keybindings 
     :bind* (
     ("C-c w" . elfeed)
     )
-    :bind (
-    
+    :bind (    
     :map elfeed-search-mode-map
     ("C-c a" . elfeed-update) ; Set "C-c a" to update db
     ("C-c c" . elfeed-db-compact) ; Set "C-c c" to compress db
     ("C-c r" . elfeed-search-set-feed-title) ; Set "C-c r" to rename a feed
-
     )
     :config
-    ; Populating the Elfeed database with my feeds and tagging them
-    (setq elfeed-feeds
-    '(("https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA" video LukeSmith)
-    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCDYZxJE8kLZ-o6nL8E1bXdQ" video Matn)
-    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCsnGwSIHyoYN0kiINAGUKxg" video Wolfgang)
-    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCZrrEuHiQjN2CUo84g5tk7w" video Tripcode)
-    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCFhXFikryT4aFcLkLw2LBLA" video NileRed)
-    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCVls1GmFKf6WlTraIb_IaJg" video DT)
-    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCerEIdrEW-IqwvlH8lTQUJQ" video Ak)
-    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCxzC4EngIsMrPmbm6Nxvb-A" video Manley)
-    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCMLgHbpJ8qYqj3CkdbvC0Ww" video Fran)
-    ("https://www.youtube.com/feeds/videos.xml?channel_id=UC5I2hjZYiW9gZPVkvzM8_Cw" video Techmoan)
-    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCLx053rWZxCiYWsBETgdKrQ" video LGR)
-    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCRXnOs1rjfLMYrtZ-0n29NA" video FreedomToons)
-    ("https://www.youtube.com/feeds/videos.xml?channel_id=UCAPR27YUyxmgwm3Wc2WSHLw" video Chris)
-    ("https://news.ycombinator.com/rss" news Hacker)
-    ("https://www.phoronix.com/rss.php" news Phoronix)
-    ("https://www.reddit.com/r/linux.rss" reddit Linux)
-    ("https://www.reddit.com/r/linuxmasterrace.rss" reddit MasterRace)
-    ("https://www.reddit.com/r/privacy.rss" reddit Privacy)
-    ("https://xkcd.com/rss.xml" webcomic XKCD)))
-    
-    ; Renaming feeds to better names
-    (defadvice elfeed-search-update (before nullprogram activate)
-    (let ((feed (elfeed-db-get-feed "https://www.reddit.com/r/linux.rss")))
-    (setf (elfeed-feed-title feed) "r/Linux"))
-    
-    (let ((feed (elfeed-db-get-feed "https://www.reddit.com/r/linuxmasterrace.rss")))
-    (setf (elfeed-feed-title feed) "r/LinuxMasterRace"))      
-    
-    (let ((feed (elfeed-db-get-feed "https://www.reddit.com/r/privacy.rss")))
-    (setf (elfeed-feed-title feed) "r/Privacy")))
-
     (setf url-queue-timeout 30) ; Set fetch timeout
     (setq elfeed-db-directory "~/.emacs.d/elfeed") ; Set database location
     (setq-default elfeed-search-filter "@2-days-ago +unread") ; Set default search filter
@@ -335,6 +300,20 @@ This is my configuration for Elfeed (an Rss/Atom Reader) with a few keybindings 
 )
 
 #+END_SRC
+
+elfeed-org Allows me to select which feeds the Elfeed RSS reader reads with an org-mode file.
+/Source: [[https://github.com/remyhonig/elfeed-org][elfeed-org (GitHub)]]/
+
+#+begin_src emacs-lisp
+
+  (use-package elfeed-org
+      :ensure t
+      :config
+      (elfeed-org)
+      (setq rmh-elfeed-org-files (list "~/.emacs.d/feeds.org"))
+  )
+
+#+end_src
 
 ** Disable annoying alarm bell
 Disable the extemely annoying alarm bell in case it isn't already done on the system, this doesn't replace the bell by a
@@ -841,6 +820,12 @@ Here I tell Emacs to not include the bookmarks or the agenda file to the recentl
 
 (add-to-list 'recentf-exclude
              (expand-file-name "~/quicklisp/*"))
+
+(add-to-list 'recentf-exclude
+             (expand-file-name "~/.emacs.d/feeds.org"))
+
+(add-to-list 'recentf-exclude
+             (expand-file-name "~/.emacs.d/elfeed/*"))
 
 #+end_src
 
