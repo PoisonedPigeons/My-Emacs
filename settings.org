@@ -76,7 +76,7 @@ My variables as set-up by Emacs, with minor modifications on my part.
  '(custom-enabled-themes (quote (nord)))
  '(custom-safe-themes
    (quote
-     ("7f6d4aebcc44c264a64e714c3d9d1e903284305fd7e319e7cb73345a9994f5ef" default)))
+     ("37768a79b479684b0756dec7c0fc7652082910c37d8863c35b702db3f16000f8" default)))
  '(inhibit-startup-screen t)
  '(package-selected-packages
  (quote
