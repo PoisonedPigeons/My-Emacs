@@ -34,16 +34,22 @@ No backup or autosave (**my personal preference**).
 #+END_SRC
 
 ** Line Numbering and No Final Newline
-If Emacs version <= 26.0.50, then number lines.
-/Source: [[https://www.emacswiki.org/emacs/LineNumbers][emacswiki.org - Line Numbers]]/
+I create a new global minor-mode to enable display-line-numbers-mode  in most modes except in pdf-view-mode. I also make
+it so Emacs doesn't add a newline at the end of every buffer.
+/Source: [[https://stackoverflow.com/questions/6837511/automatically-disable-a-global-minor-mode-for-a-specific-major-mode][Automatically disable a global minor mode for a specific major mode (stackoverflow.com)]] & Myself/
 
 #+BEGIN_SRC emacs-lisp
 
-(when (version<= "26.0.50" emacs-version )
-    (global-display-line-numbers-mode))
+  (define-global-minor-mode my-global-display-line-numbers-mode display-line-numbers-mode
+    (lambda ()
+      (when (not (memq major-mode
+		       (list 'pdf-view-mode 'dashboard-mode)))
+	(display-line-numbers-mode))))
 
-(setq require-final-newline nil)
-(setq mode-require-final-newline nil)
+  (my-global-display-line-numbers-mode 1)
+
+  (setq require-final-newline nil)
+  (setq mode-require-final-newline nil)
 
 #+END_SRC
 
