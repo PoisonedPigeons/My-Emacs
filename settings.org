@@ -292,7 +292,7 @@ This is my configuration for Elfeed (an Rss/Atom Reader) with a few keybindings 
     :config
     (setf url-queue-timeout 30) ; Set fetch timeout
     (setq elfeed-db-directory "~/.emacs.d/elfeed") ; Set database location
-    (setq-default elfeed-search-filter "@2-days-ago +unread") ; Set default search filter
+    (setq-default elfeed-search-filter "@4-days-ago +unread") ; Set default search filter
     
     ; Change time format (day month year)
     (defun elfeed-search-format-date (date)
