@@ -617,17 +617,20 @@ This lets us run Jupyter (formerly IPython) notebooks within Emacs.
 #+end_src
 
 ** Magit (Git porcelain)
-Magit is an interface to Git implemented as an Emacs package. It aspires to be a complete Git porcelain.
+Magit is  an interface to Git  implemented as an Emacs  package. It aspires to  be a complete Git  porcelain. When using
+magit disable display-line-numbers-mode.
 /Source: [[https://github.com/magit/magit][Magit (GitHub)]] & myself/
 
 #+begin_src emacs-lisp
 
-(use-package magit
-    :ensure t
-    :bind* (
-    ("C-x g" . magit-status)
-    )
-)
+  (use-package magit
+      :ensure t
+      :bind* (
+      ("C-x g" . magit-status)
+      )
+      :config
+      (add-hook 'magit-mode-hook (lambda () (display-line-numbers-mode -1)))
+  )
 
 #+end_src
  
