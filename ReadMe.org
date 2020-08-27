@@ -2,6 +2,13 @@
 #+TITLE: Vicente's Emacs
 #+AUTHOR: Vicente Collares
 
+[[file:screenshot.jpg]]
+
+This is my Emacs configuration  which I've been using and constantly improving since  late 2018. This configuration uses
+literate programming  in order to  make it didactic  and easely maintainable. I  use Wiegley's excellent  [[https://github.com/jwiegley/use-package][use-package]] to
+manage most  packages. In the future  I'll try to  implement Language Server Protocol  (LSP) support on a  different Git
+branch.
+
 ** Package Repository
 Normal Branch using HTTPS.
 /Source: [[https://melpa.org/#/getting-started][Melpa.org - Getting started]]/ 
