@@ -6,4 +6,4 @@
 # But not these files...
 !.gitignore
 !init.el
-!settings.org
+!ReadMe.org
