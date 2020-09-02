@@ -1,4 +1,4 @@
-#    -*- mode: org; fill-column: 120; -*-
+#    -*- eval: (flycheck-mode 0); mode: org; fill-column: 120; -*-
 #+TITLE: Vicente's Emacs
 #+AUTHOR: Vicente Collares
 

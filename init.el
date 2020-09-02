@@ -1,3 +1,4 @@
+;    -*- eval: (flycheck-mode 0) -*-
 (when (< emacs-major-version 27)
   (package-initialize))
 (require 'org)
