@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: French article
+# key: FrArt
+# --
+\documentclass[11pt,letterpaper]{letter}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[french]{babel}
+\usepackage{graphicx}
+\usepackage[top=2.54cm,bottom=2.54cm,left=2.54cm,right=2.54cm]{geometry}
+\usepackage[kerning=true,babel=true,final]{microtype}
