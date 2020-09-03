@@ -1,10 +1,10 @@
-# Ignores root files & root directories
-/*
-/*/
+# Ignore everything
+*
+# Even if they are in subdirectories
+*/
 
-# But not these...
+# But not these files...
 !.gitignore
 !init.el
 !ReadMe.org
 !screenshot.jpg
-!snippets/
