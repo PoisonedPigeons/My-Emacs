@@ -90,10 +90,12 @@ My variables as set-up by Emacs, with minor modifications on my part.
    '(custom-safe-themes
        '("37768a79b479684b0756dec7c0fc7652082910c37d8863c35b702db3f16000f8" default))
    '(inhibit-startup-screen t)
-   '(package-selected-packages '(htmlize markdown-mode auctex ess which-key yasnippet-snippets yasnippet slime ledger-mode 
-  elfeed-org js2-mode web-mode company-php php-mode cider racket-mode move-text restart-emacs company-ghci flycheck-haskell 
-  haskell-mode fill-column-indicator zeal-at-point flycheck undo-tree smartparens rainbow-delimiters nord-theme magit 
-  org-pomodoro ein go-mode dashboard doom-modeline all-the-icons org-bullets use-package elfeed pdf-tools)))
+   '(org-agenda-files nil)
+   '(package-selected-packages '(ccls lsp-ui lsp-mode htmlize markdown-mode auctex ess which-key yasnippet-snippets 
+   yasnippet slime ledger-mode elfeed-org js2-mode web-mode company-php php-mode cider racket-mode move-text restart-emacs 
+   company-ghci flycheck-haskell haskell-mode fill-column-indicator zeal-at-point flycheck undo-tree smartparens 
+   rainbow-delimiters nord-theme magit org-pomodoro ein go-mode dashboard doom-modeline all-the-icons org-bullets 
+   use-package elfeed pdf-tools)))
 
 #+END_SRC
   
@@ -709,6 +711,8 @@ Flycheck provides modern on-the-fly syntax checking extension for multiple langu
     :ensure t
     :init
     (add-hook 'after-init-hook #'global-flycheck-mode)
+    :config
+    (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
 )
 
 #+end_src
@@ -906,5 +910,55 @@ js2-mode provides improved JavaScript editing support for Emacs.
   (use-package js2-mode
     :ensure t
     :mode "\\.js\\'")
+
+#+end_src
+** Language Server Protocol (LSP)
+The  Language  Server  Protocol  is  protocol  for  use  between  editors/IDEs  and  servers  that  provide  programming
+language-specific features.
+
+*** lsp-mode
+lsp-mode brings LSP support for Emacs and aims to provide IDE-like experience by providing
+optional integration with the most popular Emacs packages like company, flycheck and projectile.
+
+#+begin_src emacs-lisp
+
+  (use-package lsp-mode
+    :ensure t
+    :hook (lsp-mode . lsp-enable-which-key-integration)
+    :commands lsp
+    :config
+    (setq lsp-prefer-flymake nil))
+
+#+end_src
+
+*** lsp-ui
+lsp-ui provides UI integrations for lsp-mode. lsp-mode automatically activates lsp-ui unless lsp-auto-configure is nil.
+
+#+begin_src emacs-lisp
+
+  (use-package lsp-ui
+    :ensure t
+    :commands lsp-ui-mode)
+
+#+end_src
+
+*** Company mode
+lsp-mode used to use company-lsp but now uses company-capf which comes with company.
+
+#+begin_src emacs-lisp
+
+  (push 'company-capf company-backends)
+
+#+end_src
+
+*** ccls
+#+begin_src emacs-lisp
+
+  (use-package ccls
+    :ensure t
+    :hook ((c-mode c++-mode objc-mode cuda-mode) .
+	   (lambda () (require 'ccls) (lsp)))
+    :config
+    (setq ccls-args "--log-file=\"./ccls.log\" -v=2"))
 
 #+end_src
