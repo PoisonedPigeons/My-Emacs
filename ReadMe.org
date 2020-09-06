@@ -90,7 +90,6 @@ My variables as set-up by Emacs, with minor modifications on my part.
    '(custom-safe-themes
        '("37768a79b479684b0756dec7c0fc7652082910c37d8863c35b702db3f16000f8" default))
    '(inhibit-startup-screen t)
-   '(org-agenda-files nil)
    '(package-selected-packages '(ccls lsp-ui lsp-mode htmlize markdown-mode auctex ess which-key yasnippet-snippets 
    yasnippet slime ledger-mode elfeed-org js2-mode web-mode company-php php-mode cider racket-mode move-text restart-emacs 
    company-ghci flycheck-haskell haskell-mode fill-column-indicator zeal-at-point flycheck undo-tree smartparens 
