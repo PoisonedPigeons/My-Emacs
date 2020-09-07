@@ -820,25 +820,14 @@ Racket-mode adds support for racket code editing, REPL, auto-completion and more
 #+end_src
 
 ** Recentf: ignore bookmarks and agenda
-Here I tell Emacs to not include the bookmarks or the agenda file to the recently opened files.
+Here I tell Emacs what not to include in the recently opened files list.
 /Source: [[https://emacs.stackexchange.com/questions/27139/ignoring-specific-files-in-recentf-mode][Ignoring specific files in recentf mode (emacs.stackexchange.com)]]/
 
 #+begin_src emacs-lisp
 
-(add-to-list 'recentf-exclude
-             (expand-file-name "~/.emacs.d/bookmarks"))
-
-(add-to-list 'recentf-exclude
-             (expand-file-name "~/Documents/Org/Todo.org"))
-
-(add-to-list 'recentf-exclude
-             (expand-file-name "~/quicklisp/*"))
-
-(add-to-list 'recentf-exclude
-             (expand-file-name "~/.emacs.d/feeds.org"))
-
-(add-to-list 'recentf-exclude
-             (expand-file-name "~/.emacs.d/elfeed/*"))
+  (setq recentf-exclude `(,(expand-file-name "~/.emacs.d/bookmarks") "c:/Users/vicen/Documents/Org/Todo.*"
+			  ,(expand-file-name "~/quicklisp/*") ,(expand-file-name "~/.emacs.d/feeds.org")
+			  ,(expand-file-name "~/.emacs.d/elfeed/*") ,(expand-file-name "~/.emacs.d/elpa/*")))
 
 #+end_src
 
