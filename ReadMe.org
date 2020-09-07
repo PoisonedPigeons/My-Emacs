@@ -6,8 +6,8 @@
 
 This is my Emacs configuration  which I've been using and constantly improving since  late 2018. This configuration uses
 literate programming  in order to  make it didactic  and easely maintainable. I  use Wiegley's excellent  [[https://github.com/jwiegley/use-package][use-package]] to
-manage most  packages. In the future  I'll try to  implement Language Server Protocol  (LSP) support on a  different Git
-branch.
+manage most  packages.  I've  added initial Language  Server Protocol (LSP)  support for  C/C++/ObjC. Next I'll  add LSP
+support for Clojure, Haskell, OCaml and Python.
 
 ** Package Repository
 Normal Branch using HTTPS.
