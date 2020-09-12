@@ -945,8 +945,6 @@ lsp-mode used to use company-lsp but now uses company-capf which comes with comp
   (use-package ccls
     :ensure t
     :hook ((c-mode c++-mode objc-mode cuda-mode) .
-	   (lambda () (require 'ccls) (lsp)))
-    :config
-    (setq ccls-args "--log-file=\"./ccls.log\" -v=2"))
+	   (lambda () (require 'ccls) (lsp))))
 
 #+end_src
