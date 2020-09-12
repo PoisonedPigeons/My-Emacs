@@ -828,7 +828,7 @@ Here I tell Emacs what not to include in the recently opened files list.
 
 #+begin_src emacs-lisp
 
-  (setq recentf-exclude `(,(expand-file-name "~/.emacs.d/bookmarks") "~/Documents/Org/Todo.*"
+  (setq recentf-exclude `(,(expand-file-name "~/.emacs.d/bookmarks") ,(expand-file-name "~/Documents/Org/Todo.*")
 			  ,(expand-file-name "~/quicklisp/*") ,(expand-file-name "~/.emacs.d/feeds.org")
 			  ,(expand-file-name "~/.emacs.d/elfeed/*") ,(expand-file-name "~/.emacs.d/elpa/*")))
 
