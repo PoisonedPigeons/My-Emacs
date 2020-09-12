@@ -270,7 +270,7 @@ of personal preference, when in the tty I want to use the terminal emulator's de
 #+BEGIN_SRC emacs-lisp
 
 (when (display-graphic-p)
-    (set-face-attribute 'default nil :family "Consolas" :height 105))
+    (set-face-attribute 'default nil :family "Hack" :height 100))
 
 #+END_SRC
 
