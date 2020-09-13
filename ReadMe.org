@@ -480,8 +480,8 @@ command line, therefore I only set these keys on GUI mode.
 #+BEGIN_SRC emacs-lisp
 
 (when (display-graphic-p)
-    (global-set-key [mouse-4] 'previous-buffer)
-    (global-set-key [mouse-5] 'next-buffer))
+    (global-set-key [mouse-8] 'previous-buffer)
+    (global-set-key [mouse-9] 'next-buffer))
 
 #+END_SRC
 
