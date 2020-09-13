@@ -513,13 +513,10 @@ This package extends Emacs with support for interactive programming in Common Li
 
 #+BEGIN_SRC emacs-lisp
 
-  ; Works on Windows for me
     (use-package slime
       :ensure t
       :config
-      (setq slime-lisp-implementations
-	    '((sbcl ("C:\\Program Files\\Steel Bank Common Lisp\\2.0.0\\sbcl.exe" "--core" "C:\\Program Files\\Steel Bank Common Lisp\\2.0.0\\sbcl.core"))))
-    )
+      (setq inferior-lisp-program "sbcl"))
 
 #+END_SRC
 
