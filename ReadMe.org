@@ -945,3 +945,17 @@ lsp-mode used to use company-lsp but now uses company-capf which comes with comp
 	   (lambda () (require 'ccls) (lsp))))
 
 #+end_src
+** Lilypond
+LilyPond is a program and file format for music engraving. LilyPond-mode let's you enter music and run LilyPond, it also
+provides autocompletion.
+
+#+begin_src emacs-lisp
+
+  (setq load-path (append (list (expand-file-name "~/.emacs.d/elpa/lilypond-mode")) load-path))
+
+  (autoload 'LilyPond-mode "lilypond-mode" "LilyPond Editing Mode" t)
+  (add-to-list 'auto-mode-alist '("\\.ly$" . LilyPond-mode))
+  (add-to-list 'auto-mode-alist '("\\.ily$" . LilyPond-mode))
+  (add-hook 'LilyPond-mode-hook (lambda () (turn-on-font-lock)))
+
+#+end_src
