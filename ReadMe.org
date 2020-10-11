@@ -125,13 +125,12 @@ Hide menu bar & add a macro to show menu-bar and bind (F10).
 
 ** Org-mode customization
 *** Positions of tags
-Make sure tags  aren't aligned further away from  the heading's text. This  is my personal preference, I  don't like how
-Emacs does it by default.  
-/Source: [[https://stackoverflow.com/questions/6210840/tag-position-in-org-mode][Tag Position in Org Mode]]/
+Make sure tags are close to the heading's text in a org file or in agenda view.
 
 #+begin_src emacs-lisp
 
-(setq org-tags-column 0)
+  (setq org-tags-column 0)
+  (setq org-agenda-tags-column 0)
 
 #+end_src
 
