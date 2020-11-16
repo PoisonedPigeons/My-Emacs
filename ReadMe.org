@@ -409,7 +409,8 @@ bookmarks, org agenda & registers.
     (setq dashboard-set-file-icons t)
 
     ; Set the banner logo text [1], the emacs icon style [2] and center everything [3] 
-    (setq dashboard-banner-logo-title "Welcome to Emacs Vicente")
+    (setq dashboard-banner-logo-title
+    (concat "Welcome to GNU Emacs " (capitalize (user-login-name)) "!"))
     (setq dashboard-startup-banner 'logo)
     (setq dashboard-center-content t)
     
