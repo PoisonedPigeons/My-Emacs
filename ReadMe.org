@@ -1,0 +1,434 @@
+#+TITLE: Emacs MMXXII
+#+AUTHOR: Vicente Collares
+
+An Emacs-based environment for writing that uses Org-mode to generate beautiful LaTeX documents.
+
+* Packet managers and repository
+** Straight.el
+Next-generation, purely functional package manager for the Emacs hacker.
+/See: [[https://github.com/raxod502/straight.el][straight.el (GitHub)]]/
+
+#+BEGIN_SRC emacs-lisp
+  (setq straight-use-package-by-default t)
+  (defvar bootstrap-version)
+  (let ((bootstrap-file
+	 (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
+	(bootstrap-version 5))
+    (unless (file-exists-p bootstrap-file)
+      (with-current-buffer
+	  (url-retrieve-synchronously
+	   "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+	   'silent 'inhibit-cookies)
+	(goto-char (point-max))
+	(eval-print-last-sexp)))
+    (load bootstrap-file nil 'nomessage))
+  (straight-use-package 'use-package)
+#+END_SRC
+** Package Repository
+#+BEGIN_SRC emacs-lisp
+  (require 'package)
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+  (package-initialize)
+#+END_SRC
+* Personal preferences
+** My variables
+My variables as set-up by Emacs, with minor modifications on my part.
+
+#+BEGIN_SRC emacs-lisp
+  (prefer-coding-system 'utf-8) ; Always try to use utf-8
+
+  (custom-set-variables
+   '(org-startup-folded t)
+   '(inhibit-startup-screen t)
+   '(safe-local-variable-values '((TeX-engine . LuaTeX))))
+  
+  (setq warning-minimum-level :emergency)
+#+END_SRC
+** No Backup Or Autosave
+#+BEGIN_SRC emacs-lisp
+(setq make-backup-files nil) 
+(setq auto-save-default nil)
+#+END_SRC
+** Line Numbering and No Final Newline
+I create a new global minor-mode to enable display-line-numbers-mode in most modes except in pdf-view-mode.
+/See: [[https://stackoverflow.com/questions/6837511/automatically-disable-a-global-minor-mode-for-a-specific-major-mode][Automatically disable a global minor mode for a specific major mode (stackoverflow.com)]]/
+
+#+BEGIN_SRC emacs-lisp
+  (define-global-minor-mode my-global-display-line-numbers-mode
+    display-line-numbers-mode (lambda () (when (not (memq major-mode
+    (list 'pdf-view-mode 'dashboard-mode)))
+    (display-line-numbers-mode))))
+
+  (my-global-display-line-numbers-mode 1)
+#+END_SRC
+** Hidden menu-bar
+Hide menu bar & add a macro to show menu-bar and bind (F10).
+/See: [[https://stackoverflow.com/questions/11176138/dynamically-show-hide-menu-bar-in-emacs][Dynamically show/hide menu bar in Emacs]]/
+    
+#+BEGIN_SRC emacs-lisp
+  (menu-bar-mode -1) ; Hide menu-bar
+
+  (add-hook
+   'pre-command-hook
+   (lambda ()
+     (when (eq menu-bar-mode 42)
+       (menu-bar-mode -1))))
+
+  (defun Menu-bar-open ()
+    (interactive)
+    (unless menu-bar-mode
+      (menu-bar-mode 1))
+    (menu-bar-open)
+    (setq menu-bar-mode 42))
+
+  (global-set-key [f10] 'Menu-bar-open) ; Bind (menu-bar-open) to F10
+#+END_SRC
+** Hide toolbar and scrollbar when using emacs from GUI
+#+BEGIN_SRC emacs-lisp
+  (when (display-graphic-p)
+    (tool-bar-mode -1)
+    (toggle-scroll-bar -1))
+#+END_SRC
+** Always open emacs GUI maximized
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'default-frame-alist '(fullscreen . maximized))
+#+END_SRC
+** Disable annoying alarm bell
+Disable alarm bell in case it isn't already done on the system.
+/See: [[https://emacs.stackexchange.com/questions/28906/][how to switch off the sounds]]/
+
+#+BEGIN_SRC emacs-lisp
+(setq ring-bell-function 'ignore)
+#+END_SRC
+** Confirm before exiting Emacs
+#+BEGIN_SRC emacs-lisp
+(setq confirm-kill-emacs 'y-or-n-p)
+#+END_SRC
+** Close current buffer
+Close the current buffer using "kill-buffer-and-window" by pressing "C-x k" (globally). 
+
+#+BEGIN_SRC emacs-lisp
+
+(global-set-key (kbd "C-x k") 'kill-buffer-and-window) 
+    
+#+END_SRC
+** Disable suspend Emacs keybindings (Ctrl-z & Ctrl-x Ctrl-z)
+#+BEGIN_SRC emacs-lisp
+(global-set-key (kbd "C-x C-z") nil) ; Ctrl-x Ctrl-z
+(global-set-key (kbd "C-z") nil) ; Ctrl-z
+#+END_SRC
+** Use the forward and backward buttons on my mouse to cycle between buffers
+My "mouse", which is actually a  trackball (Logitech M570), has a forward and backwards button which serves to cycle between buffers  in Emacs.
+Note: According to my testing the forward & backward mouse buttons don't work inside the command line, therefore I only set these keys on GUI mode.
+
+#+BEGIN_SRC emacs-lisp
+  (when (display-graphic-p)
+    (global-set-key [mouse-8] 'previous-buffer)
+    (global-set-key [mouse-9] 'next-buffer))
+#+END_SRC
+** Recentf ignore certain files
+Here I tell Emacs what not to include in the recently opened files list.
+/See: [[https://emacs.stackexchange.com/questions/27139/ignoring-specific-files-in-recentf-mode][Ignoring specific files in recentf mode (emacs.stackexchange.com)]]/
+
+#+begin_src emacs-lisp
+  (setq recentf-exclude `(,(expand-file-name "~/.emacs.d/bookmarks") ,(expand-file-name "~/Documents/Org/Todo.*")
+			  ,(expand-file-name "~/quicklisp/*") ,(expand-file-name "~/.emacs.d/feeds.org")
+			  ,(expand-file-name "~/.emacs.d/elfeed/*") ,(expand-file-name "~/.emacs.d/elpa/*")
+			  ".*\.pdf"))
+#+end_src
+** Change font to "Hack" when using emacs from GUI
+Change emacs font to "Hack" and set font size to 10pt.
+
+#+BEGIN_SRC emacs-lisp
+  (when (display-graphic-p)
+    (set-face-attribute 'default nil :family "Hack" :height 100))
+#+END_SRC
+** Home directory on MS Windows
+#+BEGIN_SRC emacs-lisp
+  (when (eq system-type 'windows-nt)
+    (setq default-directory (concat "C:\\Users\\" user-login-name)))
+#+end_src
+* Packages
+** Restart Emacs from within itself
+Restart Emacs from within Emacs itself using the keybinding "C-x c" (which resembles to "C-x C-c").
+/See: [[https://github.com/iqbalansari/restart-emacs][Restart-Emacs (GitHub)]]/
+
+#+begin_src emacs-lisp
+  (use-package restart-emacs
+    :ensure t
+    :bind* (
+	    ("C-x c" . #'restart-emacs)
+	    )
+    )
+#+end_src
+** Better undoing and redoing using Undo-tree
+#+begin_src emacs-lisp
+  (use-package undo-tree
+      :ensure t
+      :init
+      (global-undo-tree-mode)
+      :bind* (
+      ("C--" . undo-tree-undo)
+      ("C-=" . undo-tree-redo)
+      )
+      :config
+      (setq undo-tree-auto-save-history nil))
+#+end_src
+** Move the current line
+Move-text allows you to move the current line/region using "M-up" and "M-down" outside Org-mode.
+
+#+begin_src emacs-lisp
+  (use-package move-text
+      :ensure t
+      :config
+      (move-text-default-bindings)
+  )
+#+end_src
+
+** which-key
+which-key is a minor mode for Emacs that displays the key bindings following your currently entered incomplete command (a prefix) in a popup.
+/See: [[https://github.com/justbur/emacs-which-key][Which-key (GitHub)]]/
+
+#+BEGIN_SRC emacs-lisp
+  (use-package which-key
+    :ensure t
+    :config
+    (which-key-mode)
+    (which-key-setup-side-window-bottom)
+    )
+#+END_SRC
+
+** Magit (Git porcelain)
+Magit is an interface to Git implemented as an Emacs package. It aspires to be a complete Git porcelain.
+When using magit disable display-line-numbers-mode.
+/See: [[https://github.com/magit/magit][Magit (GitHub)]]/
+
+#+begin_src emacs-lisp
+  (use-package magit
+    :ensure t
+    :bind* (
+	    ("C-x g" . magit-status)
+	    )
+    :config
+    (add-hook 'magit-mode-hook (lambda () (display-line-numbers-mode -1)))
+    )
+#+end_src
+
+** Company-mode (Autocomplete)
+Default Configuration for company-mode from their site.
+/Source: [[https://company-mode.github.io/][company-mode for Emacs]]/
+
+#+BEGIN_SRC emacs-lisp
+  (use-package company
+    :ensure t
+    :config
+    (add-hook 'after-init-hook 'global-company-mode))
+#+END_SRC
+** Automatic insertion of pairs
+Smartparens is for the automatic insertion, wrapping navigation with user defined pairs.
+/See: [[https://github.com/Fuco1/smartparens][Smartparens (GitHub)]]/
+
+#+begin_src emacs-lisp
+  (use-package smartparens
+    :ensure t
+    :hook ((prog-mode haskell-interactive-mode LaTeX-mode lisp-interaction-mode) . smartparens-mode)
+    :config
+    (require 'smartparens-config))
+#+end_src
+** Add Icons to emacs (all-the-icons)
+All-the-icons is used by emacs-dashboard, doom-modeline and others to display icons.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package all-the-icons
+      :ensure t
+  )
+#+END_SRC
+** Custom modeline (using doom-modeline)
+I setup a custom modeline using the doom-modeline theme and customize it. 
+/See: [[https://github.com/seagle0128/doom-modeline][Doom-modeline (github)]]/
+
+#+BEGIN_SRC emacs-lisp
+  (use-package doom-modeline
+      :ensure t
+      :hook (after-init . doom-modeline-mode)
+      :config
+
+      ; Display icons in mode-line or not
+      (setq doom-modeline-icon t)
+
+      ; Display indentation information
+      (setq doom-modeline-indent-info t)
+
+      ; Don t compact font caches during GC
+      (setq inhibit-compacting-font-caches t)
+  )
+#+END_SRC
+
+** A custom dashboard
+Use the package emacs-dashboard to have my own customized dashboard which starts with emacs.
+Show recently edited files, bookmarks, org agenda & registers. 
+/See: [[https://github.com/emacs-dashboard/emacs-dashboard/][Emacs-dashboard (Github)]]/
+
+#+BEGIN_SRC emacs-lisp
+  (use-package dashboard
+      :ensure t
+      :config
+      (dashboard-setup-startup-hook)
+
+      ; Add icons to the widget headings and their items
+      (setq dashboard-set-heading-icons t)
+      (setq dashboard-set-file-icons t)
+
+      ; Set the banner logo text [1], the emacs icon style [2] and center everything [3]
+      (setq dashboard-banner-logo-title
+      (concat "Welcome to Emacs MMXXII " (capitalize (user-login-name)) "!"))
+      (setq dashboard-startup-banner 'logo)
+      (setq dashboard-center-content t)
+
+      ; Set no footer message & set '\n\n' as separators
+      (setq dashboard-set-footer nil)
+      (setq dashboard-page-separator "\n\n")
+
+      ; The widgets I use: bookmarks, org agenda and registers (syntax: "[Widget Name] . [N.B of items]")
+      (setq dashboard-items '((recents  . 5)
+      (bookmarks . 5)
+      (agenda . 5)
+      (registers . 5)))
+  )
+#+END_SRC
+
+** Emacs theme
+#+BEGIN_SRC emacs-lisp
+  (use-package ample-theme
+    :init (progn (load-theme 'ample t t)
+		 (load-theme 'ample-flat t t)
+		 (load-theme 'ample-light t t)
+		 (enable-theme 'ample))
+    :defer t
+    :ensure t)
+#+END_SRC
+
+** On the fly syntax checking
+Flycheck provides modern on-the-fly syntax checking extension for multiple languages for Emacs.
+/See: [[https://github.com/flycheck/flycheck][flycheck (GitHub)]]/
+
+#+begin_src emacs-lisp
+  (use-package flycheck
+    :ensure t
+    :init (global-flycheck-mode))
+#+end_src
+** Rainbow delimiters
+This mode highlights delimiters such as parentheses, brackets or braces according to their depth. Each depth has it own color.
+/See: [[https://github.com/Fanael/rainbow-delimiters][rainbow-delimiters (GitHub)]]/
+
+#+begin_src emacs-lisp
+  (use-package rainbow-delimiters
+    :ensure t
+    :config
+    (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+#+end_src
+** Pdf-tools (pdf reader)
+Pdf-tools is a replacement for Docview. Starts in dark mode.
+/Source: [[https://github.com/politza/pdf-tools/blob/master/README.org][pdf-tools (Github)]]/
+
+#+BEGIN_SRC emacs-lisp
+  (use-package pdf-tools
+    :ensure t
+    :config
+    (pdf-tools-install)
+    (setq pdf-view-midnight-colors '("#bdbdb3" . "gray12"))
+    (add-hook 'pdf-tools-enabled-hook 'pdf-view-midnight-minor-mode)
+
+    ;; Use pdf-tools to open PDF files
+    (setq TeX-view-program-selection '((output-pdf "PDF Tools"))
+	  TeX-source-correlate-start-server t)
+
+    ;; Update PDF buffers after successful LaTeX runs
+    (add-hook 'TeX-after-compilation-finished-functions
+	      #'TeX-revert-document-buffer))
+#+END_SRC
+** Language Server Protocol (LSP)
+The Language Server Protocol is protocol for use between editors/IDEs and servers that provide programming language-specific features.
+
+*** lsp-mode
+lsp-mode brings LSP support for Emacs and aims to provide IDE-like experience by providing
+optional integration with the most popular Emacs packages like company, flycheck and projectile.
+
+#+begin_src emacs-lisp
+  (use-package lsp-mode
+    :ensure t
+    :hook (lsp-mode . lsp-enable-which-key-integration)
+    :commands lsp
+    :config
+    (setq lsp-prefer-flymake nil))
+#+end_src
+*** lsp-ui
+lsp-ui provides UI integrations for lsp-mode. lsp-mode automatically activates lsp-ui unless lsp-auto-configure is nil.
+
+#+begin_src emacs-lisp
+
+  (use-package lsp-ui
+    :ensure t
+    :commands lsp-ui-mode)
+
+#+end_src
+
+*** Company mode
+lsp-mode used to use company-lsp but now uses company-capf which comes with company.
+
+#+begin_src emacs-lisp
+
+  (push 'company-capf company-backends)
+
+#+end_src
+* Typesetting things
+** AUCTeX
+This tells Emacs to require AUCTeX. AUCTeX is an extensible package for writing and formatting TeX files in Emacs.
+/See: [[https://en.wikipedia.org/wiki/AUCTeX][Wikipedia]]/
+
+#+begin_src emacs-lisp
+  (use-package auctex
+    :defer t
+    :ensure t)
+#+end_src
+** Markdown
+I also tell Emacs to require Markdown mode.
+
+#+begin_src emacs-lisp
+  (use-package markdown-mode
+    :ensure t)
+#+end_src
+** htmlize
+I tell Emacs to require htmlize. This package is used when generating html pages from .org files.
+
+#+begin_src emacs-lisp
+  (use-package htmlize
+    :ensure t)
+#+end_src
+
+* Org-mode customization
+** Org-mode bullets
+Prettify headings and plain lists in Org mode.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org-bullets
+    :ensure t
+    :config
+    (add-hook 'org-mode-hook 'org-bullets-mode)
+    )
+#+end_src
+
+** Org-mode link to man pages
+/See: [[https://orgmode.org/manual/Adding-Hyperlink-Types.html][Adding Hyperlink Types (The Org Manual)]]/
+
+#+BEGIN_SRC emacs-lisp
+  (require 'ol-man)
+#+end_src
+** Compiling LaTeX with LuaTeX
+Use LuaTeX (through latexmk) instead of pdfTeX to compile Org-mode files.
+/See: [[man:latexmk][Latexmk (man page)]]/
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (with-eval-after-load 'ox-latex
+    (setq org-latex-pdf-process '("latexmk -f -pdf -lualatex -interaction=nonstopmode -output-directory=%o %f")))
+#+end_src

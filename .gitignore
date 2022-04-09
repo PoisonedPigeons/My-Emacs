@@ -1,0 +1,10 @@
+# Ignore everything
+*
+# Even if they are in subdirectories
+*/
+
+# But not these files...
+!.gitignore
+!init.el
+!ReadMe.org
+!screenshot.jpg
