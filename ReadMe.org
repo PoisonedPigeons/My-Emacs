@@ -432,3 +432,12 @@ Use LuaTeX (through latexmk) instead of pdfTeX to compile Org-mode files.
   (with-eval-after-load 'ox-latex
     (setq org-latex-pdf-process '("latexmk -f -pdf -lualatex -interaction=nonstopmode -output-directory=%o %f")))
 #+end_src
+
+* Misc
+** Slime (Superior Lisp Interaction Mode)
+#+BEGIN_SRC emacs-lisp
+  (use-package slime
+    :ensure t
+    :config
+    (setq inferior-lisp-program "sbcl"))
+#+END_SRC
