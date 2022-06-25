@@ -422,7 +422,8 @@ Prettify headings and plain lists in Org mode.
 /See: [[https://orgmode.org/manual/Adding-Hyperlink-Types.html][Adding Hyperlink Types (The Org Manual)]]/
 
 #+BEGIN_SRC emacs-lisp
-  (require 'ol-man)
+(with-eval-after-load 'org-mode
+  (require 'ol-man))
 #+end_src
 ** Compiling LaTeX with LuaTeX
 Use LuaTeX (through latexmk) instead of pdfTeX to compile Org-mode files.
