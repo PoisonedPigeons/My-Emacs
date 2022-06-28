@@ -425,6 +425,16 @@ Prettify headings and plain lists in Org mode.
 (with-eval-after-load 'org-mode
   (require 'ol-man))
 #+end_src
+** Preview LaTeX equations
+*** Text size of equations when using org-latex-preview
+#+BEGIN_SRC emacs-lisp
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 1.6))
+#+END_SRC
+*** Location of the images of equations when using org-latex-preview
+#+BEGIN_SRC emacs-lisp
+  (setq org-preview-latex-image-directory
+	(expand-file-name (concat user-emacs-directory "ltximg/")))
+#+END_SRC
 ** Compiling LaTeX with LuaTeX
 Use LuaTeX (through latexmk) instead of pdfTeX to compile Org-mode files.
 /See: [[man:latexmk][Latexmk (man page)]]/
