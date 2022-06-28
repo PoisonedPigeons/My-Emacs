@@ -435,6 +435,10 @@ Prettify headings and plain lists in Org mode.
   (setq org-preview-latex-image-directory
 	(expand-file-name (concat user-emacs-directory "ltximg/")))
 #+END_SRC
+** Default LaTeX packages that should always be loaded
+#+BEGIN_SRC emacs-lisp
+  (setq org-latex-packages-alist '(("" "bbm" t)))
+#+END_SRC
 ** Compiling LaTeX with LuaTeX
 Use LuaTeX (through latexmk) instead of pdfTeX to compile Org-mode files.
 /See: [[man:latexmk][Latexmk (man page)]]/
