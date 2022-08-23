@@ -40,8 +40,9 @@ My variables as set-up by Emacs, with minor modifications on my part.
   (custom-set-variables
    '(org-startup-folded t)
    '(inhibit-startup-screen t)
-   '(safe-local-variable-values '((TeX-engine . LuaTeX))))
-  
+   '(safe-local-variable-values '((TeX-engine . LuaTeX)))
+   '(warning-suppress-types '((comp))))
+
   (setq warning-minimum-level :emergency)
 #+END_SRC
 ** No Backup Or Autosave
