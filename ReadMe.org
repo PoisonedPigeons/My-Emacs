@@ -457,3 +457,9 @@ Use LuaTeX (through latexmk) instead of pdfTeX to compile Org-mode files.
     :config
     (setq inferior-lisp-program "sbcl"))
 #+END_SRC
+
+** Uxntal assembly language
+#+BEGIN_SRC emacs-lisp
+  (use-package uxntal-mode
+    :ensure t)
+#+END_SRC
