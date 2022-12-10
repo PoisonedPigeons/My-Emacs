@@ -1,7 +1,9 @@
 #+TITLE: Emacs MMXXII
 #+AUTHOR: Vicente Collares
 
-An Emacs-based environment for writing that uses Org-mode to generate beautiful LaTeX documents.
+This is my new Emacs configuration for the year 2022 after having suffered “dot
+emacs bankruptcy.” Initially it was supposed to be for document preparation
+exclusively, but grew into a general text editing environment.
 
 * Packet managers and repository
 ** Straight.el
@@ -411,6 +413,13 @@ I tell Emacs to require htmlize. This package is used when generating html pages
 #+end_src
 
 * Org-mode customization
+** Org-mode itself
+Here we tell Emacs to use the version of Org-mode that comes build-in to avoid version mismatch.
+#+BEGIN_SRC emacs-lisp
+  (use-package org
+    :straight
+    (:type built-in))
+#+END_SRC
 ** Org-mode bullets
 Prettify headings and plain lists in Org mode.
 
@@ -466,3 +475,41 @@ Use LuaTeX (through latexmk) instead of pdfTeX to compile Org-mode files.
   (use-package uxntal-mode
     :ensure t)
 #+END_SRC
+
+** An rss/atom reader (elfeed)
+*** Elfeed itself
+This is my configuration for Elfeed (an rss/atom Reader) with a few of my keybindings.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package elfeed
+    :ensure t
+    :bind* (
+	    ("C-c w" . elfeed))
+    :bind (
+	   :map elfeed-search-mode-map
+	   ("C-c a" . elfeed-update) ; Set "C-c a" to update db
+	   ("C-c c" . elfeed-db-compact) ; Set "C-c c" to compress db
+	   ("C-c r" . elfeed-search-set-feed-title) ; Set "C-c r" to rename a feed
+	   )
+    :config
+    (setf url-queue-timeout 30) ; Set fetch timeout
+    (setq elfeed-db-directory "~/.emacs.d/elfeed") ; Set database location
+    (setq-default elfeed-search-filter "@5-days-ago +unread") ; Set default search filter
+
+    ;; Change time format (year-month-day)
+    (defun elfeed-search-format-date (date)
+      (format-time-string "%Y-%m-%d" (seconds-to-time date))))
+#+END_SRC
+
+*** Elfeed-org
+Elfeed-org allows me to select which feeds the Elfeed gets with an org-mode file.
+/Source: [[https://github.com/remyhonig/elfeed-org][elfeed-org (GitHub)]]/
+
+#+BEGIN_SRC emacs-lisp
+  (use-package elfeed-org
+    :ensure t
+    :config
+    (elfeed-org)
+    (setq rmh-elfeed-org-files (list "~/.emacs.d/feeds.org")))
+#+END_SRC
+
