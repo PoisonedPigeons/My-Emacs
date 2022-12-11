@@ -57,13 +57,13 @@ My variables as set-up by Emacs, with minor modifications on my part.
 (setq auto-save-default nil)
 #+END_SRC
 ** Line Numbering and No Final Newline
-I create a new global minor-mode to enable display-line-numbers-mode in most modes except in pdf-view-mode.
+I create a new global minor-mode to enable display-line-numbers-mode in most modes except in a few modes.
 /See: [[https://stackoverflow.com/questions/6837511/automatically-disable-a-global-minor-mode-for-a-specific-major-mode][Automatically disable a global minor mode for a specific major mode (stackoverflow.com)]]/
 
 #+BEGIN_SRC emacs-lisp
   (define-global-minor-mode my-global-display-line-numbers-mode
     display-line-numbers-mode (lambda () (when (not (memq major-mode
-    (list 'pdf-view-mode 'dashboard-mode)))
+    (list 'pdf-view-mode 'dashboard-mode 'vterm-mode)))
     (display-line-numbers-mode))))
 
   (my-global-display-line-numbers-mode 1)
@@ -513,3 +513,17 @@ Elfeed-org allows me to select which feeds the Elfeed gets with an org-mode file
     (setq rmh-elfeed-org-files (list "~/.emacs.d/feeds.org")))
 #+END_SRC
 
+** A terminal emulator inside Emacs
+Emacs-libvterm is fully-fledged terminal emulator inside GNU Emacs based on
+libvterm, a C library. Change the color of black to a dark gray (#656565). Do
+not kill the buffer when the shell is exited.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package vterm
+    :ensure t
+    :custom-face
+    (vterm-color-black ((t (:foreground "#656565" :background "#656565"))))
+    :config
+    (global-set-key (kbd "C-c t") 'vterm)
+    (setq vterm-kill-buffer-on-exit nil))
+#+END_SRC
