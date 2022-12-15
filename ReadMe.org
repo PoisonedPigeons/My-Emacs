@@ -525,5 +525,6 @@ not kill the buffer when the shell is exited.
     (vterm-color-black ((t (:foreground "#656565" :background "#656565"))))
     :config
     (global-set-key (kbd "C-c t") 'vterm)
-    (setq vterm-kill-buffer-on-exit nil))
+    (setq vterm-kill-buffer-on-exit nil)
+    (setq vterm-timer-delay nil))
 #+END_SRC
