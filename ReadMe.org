@@ -238,7 +238,7 @@ Smartparens is for the automatic insertion, wrapping navigation with user define
 #+begin_src emacs-lisp
   (use-package smartparens
     :ensure t
-    :hook ((prog-mode haskell-interactive-mode LaTeX-mode lisp-interaction-mode) . smartparens-mode)
+    :hook ((prog-mode haskell-interactive-mode LaTeX-mode lisp-interaction-mode yaml-mode) . smartparens-mode)
     :config
     (require 'smartparens-config))
 #+end_src
@@ -536,6 +536,7 @@ There you can enable text-mode by running M-x text-mode to see the color coded k
 
 #+BEGIN_SRC emacs-lisp
   (use-package hl-todo
+    :ensure t
     :hook (prog-mode text-mode)
     :bind (
 	   :map hl-todo-mode-map
@@ -543,4 +544,12 @@ There you can enable text-mode by running M-x text-mode to see the color coded k
 	   ("C-c n" . 'hl-todo-next)
 	   ("C-c o" . 'hl-todo-occur)
 	   ("C-c i" . 'hl-todo-insert)))
+#+END_SRC
+** Editing files YAML data files
+I don't edit YAML files often, but when I do I'd like for my editor to support it.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package yaml-mode
+    :ensure t
+    :mode "\\.yml\\'")
 #+END_SRC
