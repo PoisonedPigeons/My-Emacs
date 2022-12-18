@@ -419,6 +419,7 @@ Here we tell Emacs to use the version of Org-mode that comes build-in to avoid v
   (use-package org
     :straight
     (:type built-in))
+  (add-hook 'org-mode-hook (lambda () (hl-todo-mode -1)))
 #+END_SRC
 ** Org-mode bullets
 Prettify headings and plain lists in Org mode.
