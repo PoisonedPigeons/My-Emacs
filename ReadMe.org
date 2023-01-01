@@ -387,6 +387,18 @@ lsp-mode used to use company-lsp but now uses company-capf which comes with comp
   (push 'company-capf company-backends)
 
 #+end_src
+** Helm: incremental completions and narrowing selections
+#+BEGIN_SRC emacs-lisp
+  ;; TODO remove line numbers inside helm buffers
+  (use-package helm
+    :straight t
+    :bind (
+	   ("M-x" . helm-M-x)
+	   ("C-x C-f" . helm-find-files)
+	   ("C-x b" . helm-buffers-list))
+    :config
+    (helm-mode 1))
+#+END_SRC
 * Typesetting things
 ** AUCTeX
 This tells Emacs to require AUCTeX. AUCTeX is an extensible package for writing and formatting TeX files in Emacs.
