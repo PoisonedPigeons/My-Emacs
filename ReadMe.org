@@ -50,6 +50,7 @@ My variables as set-up by Emacs, with minor modifications on my part.
    '(warning-suppress-types '((comp))))
 
   (setq warning-minimum-level :emergency)
+  (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
 #+END_SRC
 ** No Backup Or Autosave
 #+BEGIN_SRC emacs-lisp
