@@ -342,6 +342,7 @@ Pdf-tools is a replacement for Docview. Starts in dark mode.
   (use-package pdf-tools
     :ensure t
     :config
+    (setq pdf-view-midnight-invert nil)
     (pdf-tools-install)
     (setq pdf-view-midnight-colors '("#bdbdb3" . "gray12"))
     (add-hook 'pdf-tools-enabled-hook 'pdf-view-midnight-minor-mode)
