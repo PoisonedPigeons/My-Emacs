@@ -49,8 +49,9 @@ My variables as set-up by Emacs, with minor modifications on my part.
        (TeX-engine . LuaTeX)))
    '(warning-suppress-types '((comp))))
 
-  (setq warning-minimum-level :emergency)
   (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
+  ;; Avoid unnecessary warnings
+  (setq warning-minimum-level :emergency)
 #+END_SRC
 ** No Backup Or Autosave
 #+BEGIN_SRC emacs-lisp
@@ -400,6 +401,18 @@ lsp-mode used to use company-lsp but now uses company-capf which comes with comp
 	   ("C-x b" . helm-buffers-list))
     :config
     (helm-mode 1))
+#+END_SRC
+** An improved help buffer
+The package "helpful" is an alternative to the built-in Emacs help that provides much more contextual information.
+
+#+BEGIN_SRC emacs-lisp
+  (use-package helpful
+    :ensure t
+    :bind (
+	   ("C-h f" . helpful-callable)
+	   ("C-h v" . helpful-variable)
+	   ("C-h k" . helpful-key)
+	   ("C-h =" . helpful-at-point)))
 #+END_SRC
 * Typesetting things
 ** AUCTeX
