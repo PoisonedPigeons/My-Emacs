@@ -582,3 +582,16 @@ I don't edit YAML files often, but when I do I'd like for my editor to support i
     :ensure t
     :mode "\\.yml\\'")
 #+END_SRC
+
+** A function to reload this configuration
+When ~re-eval-my-config~ is executed, the whole configuration is reloaded.
+
+#+BEGIN_SRC emacs-lisp
+  (defun re-eval-my-config ()
+    "This interactive function re-evaluates your whole configuration."
+    (interactive)
+    (when (y-or-n-p "Do you want to reload your configuration?")
+      (load-file user-init-file)))
+
+  (global-set-key [f9] #'re-eval-my-config)
+#+END_SRC
