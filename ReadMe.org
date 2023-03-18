@@ -90,7 +90,9 @@ Hide menu bar & add a macro to show menu-bar and bind (F10).
     (menu-bar-open)
     (setq menu-bar-mode 42))
 
-  (global-set-key [f10] 'Menu-bar-open) ; Bind (menu-bar-open) to F10
+  (if (display-graphic-p)
+      (global-set-key [f10] 'Menu-bar-open)
+    (global-set-key [f10] 'menu-bar-open))
 #+END_SRC
 ** Hide toolbar and scrollbar when using emacs from GUI
 #+BEGIN_SRC emacs-lisp
