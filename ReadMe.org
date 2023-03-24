@@ -595,22 +595,3 @@ When ~re-eval-my-config~ is executed, the whole configuration is reloaded.
 
   (global-set-key [f9] #'re-eval-my-config)
 #+END_SRC
-
-** Racket Language
-#+BEGIN_SRC emacs-lisp
-  (defun racket-ansi-term ()
-    "This opens an ansi-term which has racket as it's shell."
-    (interactive)
-    (let ((program-path (executable-find racket-program)))
-      (if program-path
-	  (progn
-	    (split-window-sensibly)
-	    (other-window 1)
-	    (ansi-term program-path "Racket REPL"))
-	(message "It looks like Racket isn't installed on your system (or that you need to set racket-program)"))))
-
-  (use-package racket-mode
-    :ensure t
-    :bind* (
-	    ("C-c C-z" . 'racket-ansi-term)))
-#+END_SRC
