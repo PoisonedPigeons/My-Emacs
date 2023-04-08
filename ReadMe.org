@@ -361,37 +361,18 @@ Pdf-tools is a replacement for Docview. Starts in dark mode.
 ** Language Server Protocol (LSP)
 The Language Server Protocol is protocol for use between editors/IDEs and servers that provide programming language-specific features.
 
-*** lsp-mode
-lsp-mode brings LSP support for Emacs and aims to provide IDE-like experience by providing
-optional integration with the most popular Emacs packages like company, flycheck and projectile.
-
-#+begin_src emacs-lisp
-  (use-package lsp-mode
-    :ensure t
-    :hook (lsp-mode . lsp-enable-which-key-integration)
-    :commands lsp
+*** LSP client (Eglot)
+Emacs now includes a LSP client called Eglot. Here I alias it to something easy to remember and add a global key binding for it.
+#+BEGIN_SRC emacs-lisp
+  (use-package eglot
+    :straight
+    (:type built-in)
+    :bind* (
+	    ("C-c l" . eglot)
+	    ("C-c C-l" . eglot-shutdown))
     :config
-    (setq lsp-prefer-flymake nil))
-#+end_src
-*** lsp-ui
-lsp-ui provides UI integrations for lsp-mode. lsp-mode automatically activates lsp-ui unless lsp-auto-configure is nil.
-
-#+begin_src emacs-lisp
-
-  (use-package lsp-ui
-    :ensure t
-    :commands lsp-ui-mode)
-
-#+end_src
-
-*** Company mode
-lsp-mode used to use company-lsp but now uses company-capf which comes with company.
-
-#+begin_src emacs-lisp
-
-  (push 'company-capf company-backends)
-
-#+end_src
+    (defalias 'lsp 'eglot))
+#+END_SRC
 ** Helm: incremental completions and narrowing selections
 #+BEGIN_SRC emacs-lisp
   ;; TODO remove line numbers inside helm buffers
