@@ -592,17 +592,7 @@ which adds support for working with GNU Guile.
 #+END_SRC
 
 ** The C# language
-This package will be included with the next version of GNU Emacs (29). Meanwhile
-it needs to be manually installed.
-/Source: [[https://github.com/emacs-csharp/csharp-mode#obsoletion-warning][Obsoletion warning (csharp-mode)]]/
-
-#+BEGIN_SRC emacs-lisp
-  (use-package csharp-mode
-    :ensure t
-    :config
-    (add-to-list 'auto-mode-alist '("\\.cs\\'" . csharp-mode)))
-#+END_SRC
-
+The package needed to edit C# program files is included with GNU Emacs 29 or later.
 ** Set the Emoji font
 #+BEGIN_SRC emacs-lisp
   (setq use-default-font-for-symbols nil)
