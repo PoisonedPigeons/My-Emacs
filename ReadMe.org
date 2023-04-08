@@ -12,6 +12,7 @@ Next-generation, purely functional package manager for the Emacs hacker.
 
 #+BEGIN_SRC emacs-lisp
   (setq straight-use-package-by-default t)
+  (setq straight-repository-branch "develop")
   (defvar bootstrap-version)
   (let ((bootstrap-file
 	 (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -620,4 +621,13 @@ it needs to be manually installed.
     :ensure t
     :config
     (add-to-list 'auto-mode-alist '("\\.cs\\'" . csharp-mode)))
+#+END_SRC
+
+** Set the Emoji font
+#+BEGIN_SRC emacs-lisp
+  (setq use-default-font-for-symbols nil)
+
+  (when (member "Noto Color Emoji" (font-family-list))
+    (set-fontset-font
+     t 'symbol (font-spec :family "Noto Color Emoji") nil 'prepend))
 #+END_SRC
