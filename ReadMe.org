@@ -432,7 +432,7 @@ Here we tell Emacs to use the version of Org-mode that comes build-in to avoid v
   (use-package org
     :straight
     (:type built-in))
-  (add-hook 'org-mode-hook (lambda () (hl-todo-mode -1)))
+  ;; (add-hook 'org-mode-hook (lambda () (hl-todo-mode -1)))
 #+END_SRC
 ** Org-mode bullets
 Prettify headings and plain lists in Org mode.
@@ -543,11 +543,12 @@ not kill the buffer when the shell is exited.
     (setq vterm-timer-delay nil))
 #+END_SRC
 
-** Highlight certain keywords
-To see list of all keywords that this mode highlights: C-h v hl-todo-keyword-faces RET.
-There you can enable text-mode by running M-x text-mode to see the color coded keywords.
+** [Currently disabled] Highlight certain keywords
++To see list of all keywords that this mode highlights: C-h v hl-todo-keyword-faces RET.+
++There you can enable text-mode by running M-x text-mode to see the color coded keywords.+
+Currently disabled because of a bug.
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle no
   (use-package hl-todo
     :ensure t
     :hook (prog-mode text-mode)
