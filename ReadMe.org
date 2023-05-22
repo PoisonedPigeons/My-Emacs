@@ -122,15 +122,6 @@ Close the current buffer using "kill-buffer-and-window" by pressing "C-x k" (glo
 (global-set-key (kbd "C-x C-z") nil) ; Ctrl-x Ctrl-z
 (global-set-key (kbd "C-z") nil) ; Ctrl-z
 #+END_SRC
-** Use the forward and backward buttons on my mouse to cycle between buffers
-My "mouse", which is actually a  trackball (Logitech M570), has a forward and backwards button which serves to cycle between buffers  in Emacs.
-Note: According to my testing the forward & backward mouse buttons don't work inside the command line, therefore I only set these keys on GUI mode.
-
-#+BEGIN_SRC emacs-lisp
-  (when (display-graphic-p)
-    (global-set-key [mouse-8] 'previous-buffer)
-    (global-set-key [mouse-9] 'next-buffer))
-#+END_SRC
 ** Recentf ignore certain files
 Here I tell Emacs what not to include in the recently opened files list.
 /See: [[https://emacs.stackexchange.com/questions/27139/ignoring-specific-files-in-recentf-mode][Ignoring specific files in recentf mode (emacs.stackexchange.com)]]/
