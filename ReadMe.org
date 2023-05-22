@@ -129,7 +129,7 @@ Here I tell Emacs what not to include in the recently opened files list.
 #+begin_src emacs-lisp
   (setq recentf-exclude `(,(expand-file-name "~/.emacs.d/bookmarks") ,(expand-file-name "~/quicklisp/*")
 			  ,(expand-file-name "~/.emacs.d/feeds.org") ,(expand-file-name "~/.emacs.d/elfeed/*")
-			  ".*\.pdf" "/usr/include/*" "/usr/share/sbcl-source/*" "/tmp/*"))
+			  ".*\.pdf" "/usr/include/*" "/usr/share/sbcl-source/*" "/tmp/*" "/usr/share/emacs/*"))
 #+end_src
 ** Change font to "Hack" when using emacs from GUI
 Change emacs font to "Hack" and set font size to 10pt.
