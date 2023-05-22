@@ -26,12 +26,6 @@ Next-generation, purely functional package manager for the Emacs hacker.
     (load bootstrap-file nil 'nomessage))
   (straight-use-package 'use-package)
 #+END_SRC
-** Package Repository
-#+BEGIN_SRC emacs-lisp
-  (require 'package)
-  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-  (package-initialize)
-#+END_SRC
 * Personal preferences
 ** My variables
 My variables as set-up by Emacs, with minor modifications on my part.
