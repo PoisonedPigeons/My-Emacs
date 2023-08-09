@@ -599,16 +599,3 @@ nasm-mode since that's the assembler I use the most.
     :config
     (add-to-list 'auto-mode-alist '("\\.asm\\'" . nasm-mode)))
 #+END_SRC
-
-** Netwide Assembler (NASM)
-This is a major mode for editing NASM x86 assembly programs. It understands
-NASM-specific syntax. All files ending by ~.asm~ will now, by default, use
-nasm-mode since that's the assembler I use the most.
-/Repository: [[https://github.com/skeeto/nasm-mode][nasm-mode (GitHub)]]/
-
-#+BEGIN_SRC emacs-lisp
-  (use-package nasm-mode
-    :ensure t
-    :config
-    (add-to-list 'auto-mode-alist '("\\.asm\\'" . nasm-mode)))
-#+END_SRC
