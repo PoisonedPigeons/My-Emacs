@@ -12,6 +12,7 @@ Next-generation, purely functional package manager for the Emacs hacker.
 
 #+BEGIN_SRC emacs-lisp
   (setq straight-use-package-by-default t)
+  (setq straight-repository-branch "develop")
   (defvar bootstrap-version)
   (let ((bootstrap-file
 	 (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
@@ -24,7 +25,6 @@ Next-generation, purely functional package manager for the Emacs hacker.
 	(goto-char (point-max))
 	(eval-print-last-sexp)))
     (load bootstrap-file nil 'nomessage))
-  (straight-use-package 'use-package)
 #+END_SRC
 * Personal preferences
 ** My variables
@@ -346,37 +346,18 @@ Pdf-tools is a replacement for Docview. Starts in dark mode.
 ** Language Server Protocol (LSP)
 The Language Server Protocol is protocol for use between editors/IDEs and servers that provide programming language-specific features.
 
-*** lsp-mode
-lsp-mode brings LSP support for Emacs and aims to provide IDE-like experience by providing
-optional integration with the most popular Emacs packages like company, flycheck and projectile.
-
-#+begin_src emacs-lisp
-  (use-package lsp-mode
-    :ensure t
-    :hook (lsp-mode . lsp-enable-which-key-integration)
-    :commands lsp
+*** LSP client (Eglot)
+Emacs now includes a LSP client called Eglot. Here I alias it to something easy to remember and add a global key binding for it.
+#+BEGIN_SRC emacs-lisp
+  (use-package eglot
+    :straight
+    (:type built-in)
+    :bind* (
+	    ("C-c l" . eglot)
+	    ("C-c C-l" . eglot-shutdown))
     :config
-    (setq lsp-prefer-flymake nil))
-#+end_src
-*** lsp-ui
-lsp-ui provides UI integrations for lsp-mode. lsp-mode automatically activates lsp-ui unless lsp-auto-configure is nil.
-
-#+begin_src emacs-lisp
-
-  (use-package lsp-ui
-    :ensure t
-    :commands lsp-ui-mode)
-
-#+end_src
-
-*** Company mode
-lsp-mode used to use company-lsp but now uses company-capf which comes with company.
-
-#+begin_src emacs-lisp
-
-  (push 'company-capf company-backends)
-
-#+end_src
+    (defalias 'lsp 'eglot))
+#+END_SRC
 ** Helm: incremental completions and narrowing selections
 #+BEGIN_SRC emacs-lisp
   ;; TODO remove line numbers inside helm buffers
@@ -597,15 +578,27 @@ which adds support for working with GNU Guile.
 #+END_SRC
 
 ** The C# language
-This package will be included with the next version of GNU Emacs (29). Meanwhile
-it needs to be manually installed.
-/Source: [[https://github.com/emacs-csharp/csharp-mode#obsoletion-warning][Obsoletion warning (csharp-mode)]]/
+The package needed to edit C# program files is included with GNU Emacs 29 or later.
+** Set the Emoji font
+#+BEGIN_SRC emacs-lisp
+  (setq use-default-font-for-symbols nil)
+
+  (when (member "Noto Color Emoji" (font-family-list))
+    (set-fontset-font
+     t 'symbol (font-spec :family "Noto Color Emoji") nil 'prepend))
+#+END_SRC
+
+** Netwide Assembler (NASM)
+This is a major mode for editing NASM x86 assembly programs. It understands
+NASM-specific syntax. All files ending by ~.asm~ will now, by default, use
+nasm-mode since that's the assembler I use the most.
+/Repository: [[https://github.com/skeeto/nasm-mode][nasm-mode (GitHub)]]/
 
 #+BEGIN_SRC emacs-lisp
-  (use-package csharp-mode
+  (use-package nasm-mode
     :ensure t
     :config
-    (add-to-list 'auto-mode-alist '("\\.cs\\'" . csharp-mode)))
+    (add-to-list 'auto-mode-alist '("\\.asm\\'" . nasm-mode)))
 #+END_SRC
 
 ** Netwide Assembler (NASM)
