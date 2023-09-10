@@ -351,9 +351,7 @@ Emacs now includes a LSP client called Eglot. Here I alias it to something easy 
   (use-package eglot
     :straight
     (:type built-in)
-    :bind* (
-	    ("C-c l" . eglot)
-	    ("C-c C-l" . eglot-shutdown))
+    :bind* (("C-c l" . eglot))
     :config
     (defalias 'lsp 'eglot))
 #+END_SRC
