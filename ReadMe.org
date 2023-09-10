@@ -351,9 +351,9 @@ Emacs now includes a LSP client called Eglot. Here I alias it to something easy 
   (use-package eglot
     :straight
     (:type built-in)
-    :bind* (("C-c l" . eglot))
-    :config
-    (defalias 'lsp 'eglot))
+    :bind* (("C-c l" . eglot)))
+
+  (defalias 'lsp 'eglot)
 #+END_SRC
 ** Helm: incremental completions and narrowing selections
 #+BEGIN_SRC emacs-lisp
