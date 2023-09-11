@@ -40,7 +40,9 @@ My variables as set-up by Emacs, with minor modifications on my part.
        (diff-add-log-use-relative-names . t)
        (vc-git-annotate-switches . "-w")
        (TeX-engine . LuaTeX)))
-   '(warning-suppress-types '((comp))))
+   '(warning-suppress-types '((comp)))
+   '(column-number-mode t)
+   '(line-number-mode t))
 
   (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
   ;; Avoid unnecessary warnings
