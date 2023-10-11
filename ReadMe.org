@@ -534,12 +534,10 @@ not kill the buffer when the shell is exited.
     (setq vterm-timer-delay nil))
 #+END_SRC
 
-** [Currently disabled] Highlight certain keywords
-+To see list of all keywords that this mode highlights: C-h v hl-todo-keyword-faces RET.+
-+There you can enable text-mode by running M-x text-mode to see the color coded keywords.+
-Currently disabled because of a bug.
+** Highlight certain keywords
+To see a list of all keywords that this mode highlights: C-h v hl-todo-keyword-faces RET.
 
-#+BEGIN_SRC emacs-lisp :tangle no
+#+BEGIN_SRC emacs-lisp
   (use-package hl-todo
     :ensure t
     :hook (prog-mode text-mode)
