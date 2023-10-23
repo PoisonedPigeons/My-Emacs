@@ -42,7 +42,8 @@ My variables as set-up by Emacs, with minor modifications on my part.
        (TeX-engine . LuaTeX)))
    '(warning-suppress-types '((comp)))
    '(column-number-mode t)
-   '(line-number-mode t))
+   '(line-number-mode t)
+   '(read-quoted-char-radix 16))
 
   (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
   ;; Avoid unnecessary warnings
