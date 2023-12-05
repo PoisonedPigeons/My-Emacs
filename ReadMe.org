@@ -43,7 +43,8 @@ My variables as set-up by Emacs, with minor modifications on my part.
    '(warning-suppress-types '((comp)))
    '(column-number-mode t)
    '(line-number-mode t)
-   '(read-quoted-char-radix 16))
+   '(read-quoted-char-radix 16)
+   '(history-delete-duplicates t))
 
   (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
   ;; Avoid unnecessary warnings
