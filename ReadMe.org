@@ -67,30 +67,6 @@ I create a new global minor-mode to enable display-line-numbers-mode in most mod
 
   (my-global-display-line-numbers-mode 1)
 #+END_SRC
-** Hidden menu-bar
-Hide menu bar & add a macro to show menu-bar and bind (F10).
-/See: [[https://stackoverflow.com/questions/11176138/dynamically-show-hide-menu-bar-in-emacs][Dynamically show/hide menu bar in Emacs]]/
-    
-#+BEGIN_SRC emacs-lisp
-  (menu-bar-mode -1) ; Hide menu-bar
-
-  (add-hook
-   'pre-command-hook
-   (lambda ()
-     (when (eq menu-bar-mode 42)
-       (menu-bar-mode -1))))
-
-  (defun Menu-bar-open ()
-    (interactive)
-    (unless menu-bar-mode
-      (menu-bar-mode 1))
-    (menu-bar-open)
-    (setq menu-bar-mode 42))
-
-  (if (display-graphic-p)
-      (global-set-key [f10] 'Menu-bar-open)
-    (global-set-key [f10] 'menu-bar-open))
-#+END_SRC
 ** Hide toolbar and scrollbar when using emacs from GUI
 #+BEGIN_SRC emacs-lisp
   (when (display-graphic-p)
