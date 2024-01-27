@@ -117,11 +117,6 @@ Change emacs font to "Hack" and set font size to 10pt.
   (when (display-graphic-p)
     (set-face-attribute 'default nil :family "Hack" :height 100))
 #+END_SRC
-** Home directory on MS Windows
-#+BEGIN_SRC emacs-lisp
-  (when (eq system-type 'windows-nt)
-    (setq default-directory (concat "C:\\Users\\" user-login-name)))
-#+end_src
 ** Fill-column value and indicator
 Here the fill-column is set at 80 and a built-in minor mode that shows the fill
 column length of the buffer is enabled.
