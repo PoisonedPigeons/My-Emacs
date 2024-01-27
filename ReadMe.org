@@ -461,43 +461,6 @@ Use LuaTeX (through latexmk) instead of pdfTeX to compile Org-mode files.
     :ensure t)
 #+END_SRC
 
-** An rss/atom reader (elfeed)
-*** Elfeed itself
-This is my configuration for Elfeed (an rss/atom Reader) with a few of my keybindings.
-
-#+BEGIN_SRC emacs-lisp
-  (use-package elfeed
-    :ensure t
-    :bind* (
-	    ("C-c w" . elfeed))
-    :bind (
-	   :map elfeed-search-mode-map
-	   ("C-c a" . elfeed-update) ; Set "C-c a" to update db
-	   ("C-c c" . elfeed-db-compact) ; Set "C-c c" to compress db
-	   ("C-c r" . elfeed-search-set-feed-title) ; Set "C-c r" to rename a feed
-	   )
-    :config
-    (setf url-queue-timeout 30) ; Set fetch timeout
-    (setq elfeed-db-directory "~/.emacs.d/elfeed") ; Set database location
-    (setq-default elfeed-search-filter "@5-days-ago +unread") ; Set default search filter
-
-    ;; Change time format (year-month-day)
-    (defun elfeed-search-format-date (date)
-      (format-time-string "%Y-%m-%d" (seconds-to-time date))))
-#+END_SRC
-
-*** Elfeed-org
-Elfeed-org allows me to select which feeds the Elfeed gets with an org-mode file.
-/Source: [[https://github.com/remyhonig/elfeed-org][elfeed-org (GitHub)]]/
-
-#+BEGIN_SRC emacs-lisp
-  (use-package elfeed-org
-    :ensure t
-    :config
-    (elfeed-org)
-    (setq rmh-elfeed-org-files (list "~/.emacs.d/feeds.org")))
-#+END_SRC
-
 ** A terminal emulator inside Emacs
 Emacs-libvterm is fully-fledged terminal emulator inside GNU Emacs based on
 libvterm, a C library. Change the color of black to a dark gray (#656565). Do
