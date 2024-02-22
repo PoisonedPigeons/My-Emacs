@@ -97,10 +97,11 @@ Close the current buffer using "kill-buffer-and-window" by pressing "C-x k" (glo
 (global-set-key (kbd "C-x k") 'kill-buffer-and-window) 
     
 #+END_SRC
-** Disable suspend Emacs keybindings (Ctrl-z & Ctrl-x Ctrl-z)
+** Disable suspend Emacs keybindings when using emacs from GUI
 #+BEGIN_SRC emacs-lisp
-(global-set-key (kbd "C-x C-z") nil) ; Ctrl-x Ctrl-z
-(global-set-key (kbd "C-z") nil) ; Ctrl-z
+  (when (display-graphic-p)
+    (global-set-key (kbd "C-x C-z") nil)
+    (global-set-key (kbd "C-z") nil))
 #+END_SRC
 ** Recentf ignore certain files
 Here I tell Emacs what not to include in the recently opened files list.
