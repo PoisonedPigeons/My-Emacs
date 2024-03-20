@@ -45,7 +45,9 @@ My variables as set-up by Emacs, with minor modifications on my part.
    '(column-number-mode t)
    '(line-number-mode t)
    '(read-quoted-char-radix 16)
-   '(history-delete-duplicates t))
+   '(history-delete-duplicates t)
+   '(find-function-C-source-directory
+     (concat (getenv "HOME") "/Downloads/src/emacs/src")))
 
   (add-to-list 'load-path (expand-file-name "~/.emacs.d/lisp"))
   ;; Avoid unnecessary warnings
