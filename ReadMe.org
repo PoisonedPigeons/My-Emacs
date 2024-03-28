@@ -270,14 +270,14 @@ Show recently edited files, bookmarks, org agenda & registers.
       (setq dashboard-center-content t)
 
       ; Set no footer message
-      (setq dashboard-set-footer nil)
+      (setq dashboard-startupify-list
+	    (remove 'dashboard-insert-footer dashboard-startupify-list))
 
       ; The widgets I use: bookmarks, org agenda and registers (syntax: "[Widget Name] . [N.B of items]")
       (setq dashboard-items '((recents  . 5)
       (bookmarks . 5)
       (agenda . 5)
-      (registers . 5)))
-  )
+      (registers . 5))))
 #+END_SRC
 
 ** On the fly syntax checking
