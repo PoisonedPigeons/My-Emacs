@@ -12,10 +12,14 @@ Next-generation, purely functional package manager for the Emacs hacker.
 
 #+BEGIN_SRC emacs-lisp
   (setq straight-use-package-by-default t)
+
   (defvar bootstrap-version)
   (let ((bootstrap-file
-	 (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-	(bootstrap-version 6))
+	 (expand-file-name
+	  "straight/repos/straight.el/bootstrap.el"
+	  (or (bound-and-true-p straight-base-dir)
+	      user-emacs-directory)))
+	(bootstrap-version 7))
     (unless (file-exists-p bootstrap-file)
       (with-current-buffer
 	  (url-retrieve-synchronously
@@ -138,7 +142,7 @@ Restart Emacs from within Emacs itself using the keybinding "C-x c" (which resem
 
 #+begin_src emacs-lisp
   (use-package restart-emacs
-    :ensure t
+    :straight t
     :bind* (
 	    ("C-x c" . #'restart-emacs)
 	    )
@@ -147,7 +151,7 @@ Restart Emacs from within Emacs itself using the keybinding "C-x c" (which resem
 ** Better undoing and redoing using Undo-tree
 #+begin_src emacs-lisp
   (use-package undo-tree
-    :ensure t
+    :straight t
     :init
     (global-undo-tree-mode)
     :bind* (("C--" . undo-tree-undo)
@@ -163,7 +167,7 @@ Move-text allows you to move the current line/region using "M-up" and "M-down" o
 
 #+begin_src emacs-lisp
   (use-package move-text
-      :ensure t
+      :straight t
       :config
       (move-text-default-bindings)
   )
@@ -175,7 +179,7 @@ which-key is a minor mode for Emacs that displays the key bindings following you
 
 #+BEGIN_SRC emacs-lisp
   (use-package which-key
-    :ensure t
+    :straight t
     :config
     (which-key-mode)
     (which-key-setup-side-window-bottom)
@@ -189,7 +193,7 @@ When using magit disable display-line-numbers-mode.
 
 #+begin_src emacs-lisp
   (use-package magit
-    :ensure t
+    :straight t
     :bind* (
 	    ("C-x g" . magit-status)
 	    )
@@ -204,7 +208,7 @@ Default Configuration for company-mode from their site.
 
 #+BEGIN_SRC emacs-lisp
   (use-package company
-    :ensure t
+    :straight t
     :config
     (add-hook 'after-init-hook 'global-company-mode))
 #+END_SRC
@@ -214,7 +218,7 @@ Smartparens is for the automatic insertion, wrapping navigation with user define
 
 #+begin_src emacs-lisp
   (use-package smartparens
-    :ensure t
+    :straight t
     :hook ((prog-mode haskell-interactive-mode LaTeX-mode lisp-interaction-mode yaml-mode) . smartparens-mode)
     :config
     (require 'smartparens-config))
@@ -224,7 +228,7 @@ All-the-icons is used by emacs-dashboard, doom-modeline and others to display ic
 
 #+BEGIN_SRC emacs-lisp
   (use-package all-the-icons
-      :ensure t
+      :straight t
   )
 #+END_SRC
 ** Custom modeline (using doom-modeline)
@@ -233,7 +237,7 @@ I setup a custom modeline using the doom-modeline theme and customize it.
 
 #+BEGIN_SRC emacs-lisp
   (use-package doom-modeline
-      :ensure t
+      :straight t
       :hook (after-init . doom-modeline-mode)
       :config
 
@@ -255,7 +259,7 @@ Show recently edited files, bookmarks, org agenda & registers.
 
 #+BEGIN_SRC emacs-lisp
   (use-package dashboard
-      :ensure t
+      :straight t
       :config
       (dashboard-setup-startup-hook)
 
@@ -286,7 +290,7 @@ Flycheck provides modern on-the-fly syntax checking extension for multiple langu
 
 #+begin_src emacs-lisp
   (use-package flycheck
-    :ensure t
+    :straight t
     :init (global-flycheck-mode))
 #+end_src
 ** Rainbow delimiters
@@ -295,7 +299,7 @@ This mode highlights delimiters such as parentheses, brackets or braces accordin
 
 #+begin_src emacs-lisp
   (use-package rainbow-delimiters
-    :ensure t
+    :straight t
     :config
     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 #+end_src
@@ -305,7 +309,7 @@ Pdf-tools is a replacement for Docview. Starts in dark mode.
 
 #+BEGIN_SRC emacs-lisp
   (use-package pdf-tools
-    :ensure t
+    :straight t
     :config
     (setq pdf-view-midnight-invert nil)
     (pdf-tools-install)
@@ -352,7 +356,7 @@ The package "helpful" is an alternative to the built-in Emacs help that provides
 
 #+BEGIN_SRC emacs-lisp
   (use-package helpful
-    :ensure t
+    :straight t
     :bind (
 	   ("C-h f" . helpful-callable)
 	   ("C-h v" . helpful-variable)
@@ -367,21 +371,21 @@ This tells Emacs to require AUCTeX. AUCTeX is an extensible package for writing 
 #+begin_src emacs-lisp
   (use-package auctex
     :defer t
-    :ensure t)
+    :straight t)
 #+end_src
 ** Markdown
 I also tell Emacs to require Markdown mode.
 
 #+begin_src emacs-lisp
   (use-package markdown-mode
-    :ensure t)
+    :straight t)
 #+end_src
 ** htmlize
 I tell Emacs to require htmlize. This package is used when generating html pages from .org files.
 
 #+begin_src emacs-lisp
   (use-package htmlize
-    :ensure t)
+    :straight t)
 #+end_src
 
 * Org-mode customization
@@ -398,7 +402,7 @@ Prettify headings and plain lists in Org mode.
 
 #+BEGIN_SRC emacs-lisp
   (use-package org-bullets
-    :ensure t
+    :straight t
     :config
     (add-hook 'org-mode-hook 'org-bullets-mode)
     )
@@ -438,7 +442,7 @@ Use LuaTeX (through latexmk) instead of pdfTeX to compile Org-mode files.
 ** Slime (Superior Lisp Interaction Mode)
 #+BEGIN_SRC emacs-lisp
   (use-package slime
-    :ensure t
+    :straight t
     :config
     (setq inferior-lisp-program "sbcl"))
 #+END_SRC
@@ -446,7 +450,7 @@ Use LuaTeX (through latexmk) instead of pdfTeX to compile Org-mode files.
 ** Uxntal assembly language
 #+BEGIN_SRC emacs-lisp
   (use-package uxntal-mode
-    :ensure t)
+    :straight t)
 #+END_SRC
 
 ** A terminal emulator inside Emacs
@@ -456,7 +460,7 @@ not kill the buffer when the shell is exited.
 
 #+BEGIN_SRC emacs-lisp
   (use-package vterm
-    :ensure t
+    :straight t
     :custom-face
     (vterm-color-black ((t (:foreground "#656565" :background "#656565"))))
     :config
@@ -470,7 +474,7 @@ To see a list of all keywords that this mode highlights: C-h v hl-todo-keyword-f
 
 #+BEGIN_SRC emacs-lisp
   (use-package hl-todo
-    :ensure t
+    :straight t
     :hook (prog-mode text-mode)
     :bind (
 	   :map hl-todo-mode-map
@@ -484,7 +488,7 @@ I don't edit YAML files often, but when I do I'd like for my editor to support i
 
 #+BEGIN_SRC emacs-lisp
   (use-package yaml-mode
-    :ensure t
+    :straight t
     :mode "\\.yml\\'")
 #+END_SRC
 
@@ -509,10 +513,10 @@ which adds support for working with GNU Guile.
 
 #+BEGIN_SRC emacs-lisp
   (use-package geiser
-    :ensure t)
+    :straight t)
 
   (use-package geiser-guile
-    :ensure t)
+    :straight t)
 #+END_SRC
 
 ** The C# language
@@ -534,7 +538,7 @@ nasm-mode since that's the assembler I use the most.
 
 #+BEGIN_SRC emacs-lisp
   (use-package nasm-mode
-    :ensure t
+    :straight t
     :config
     (add-to-list 'auto-mode-alist '("\\.asm\\'" . nasm-mode)))
 #+END_SRC

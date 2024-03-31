@@ -6,5 +6,5 @@
 # But not these files...
 !.gitignore
 !init.el
+!early-init.el
 !ReadMe.org
-!screenshot.jpg
