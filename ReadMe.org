@@ -47,7 +47,6 @@ My variables as set-up by Emacs, with minor modifications on my part.
        (TeX-engine . LuaTeX)))
    '(warning-suppress-types '((comp)))
    '(column-number-mode t)
-   '(line-number-mode t)
    '(read-quoted-char-radix 16)
    '(history-delete-duplicates t)
    '(find-function-C-source-directory
@@ -62,17 +61,9 @@ My variables as set-up by Emacs, with minor modifications on my part.
 (setq make-backup-files nil) 
 (setq auto-save-default nil)
 #+END_SRC
-** Line Numbering and No Final Newline
-I create a new global minor-mode to enable display-line-numbers-mode in most modes except in a few modes.
-/See: [[https://stackoverflow.com/questions/6837511/automatically-disable-a-global-minor-mode-for-a-specific-major-mode][Automatically disable a global minor mode for a specific major mode (stackoverflow.com)]]/
-
+** Line Numbering
 #+BEGIN_SRC emacs-lisp
-  (define-global-minor-mode my-global-display-line-numbers-mode
-    display-line-numbers-mode (lambda () (when (not (memq major-mode
-    (list 'dashboard-mode 'vterm-mode)))
-    (display-line-numbers-mode))))
-
-  (my-global-display-line-numbers-mode 1)
+  (global-display-line-numbers-mode t)
 #+END_SRC
 ** Hide toolbar and scrollbar when using emacs from GUI
 #+BEGIN_SRC emacs-lisp
@@ -384,7 +375,8 @@ not kill the buffer when the shell is exited.
     :config
     (global-set-key (kbd "C-c t") 'vterm)
     (setq vterm-kill-buffer-on-exit nil)
-    (setq vterm-timer-delay nil))
+    (setq vterm-timer-delay nil)
+    (add-hook 'vterm-mode-hook (lambda () (display-line-numbers-mode -1))))
 #+END_SRC
 
 ** Highlight certain keywords
