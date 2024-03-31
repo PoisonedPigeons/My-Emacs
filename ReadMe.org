@@ -223,67 +223,6 @@ Smartparens is for the automatic insertion, wrapping navigation with user define
     :config
     (require 'smartparens-config))
 #+end_src
-** Add Icons to emacs (all-the-icons)
-All-the-icons is used by emacs-dashboard, doom-modeline and others to display icons.
-
-#+BEGIN_SRC emacs-lisp
-  (use-package all-the-icons
-      :straight t
-  )
-#+END_SRC
-** Custom modeline (using doom-modeline)
-I setup a custom modeline using the doom-modeline theme and customize it. 
-/See: [[https://github.com/seagle0128/doom-modeline][Doom-modeline (github)]]/
-
-#+BEGIN_SRC emacs-lisp
-  (use-package doom-modeline
-      :straight t
-      :hook (after-init . doom-modeline-mode)
-      :config
-
-      ; Display icons in mode-line or not
-      (setq doom-modeline-icon t)
-
-      ; Display indentation information
-      (setq doom-modeline-indent-info t)
-
-      ; Don t compact font caches during GC
-      (setq inhibit-compacting-font-caches t)
-  )
-#+END_SRC
-
-** A custom dashboard
-Use the package emacs-dashboard to have my own customized dashboard which starts with emacs.
-Show recently edited files, bookmarks, org agenda & registers. 
-/See: [[https://github.com/emacs-dashboard/emacs-dashboard/][Emacs-dashboard (Github)]]/
-
-#+BEGIN_SRC emacs-lisp
-  (use-package dashboard
-      :straight t
-      :config
-      (dashboard-setup-startup-hook)
-
-      ; Add icons to the widget headings and their items
-      (setq dashboard-set-heading-icons t)
-      (setq dashboard-set-file-icons t)
-
-      ; Set the banner logo text [1], the emacs icon style [2] and center everything [3]
-      (setq dashboard-banner-logo-title
-      (concat "Welcome to Emacs MMXXII " (capitalize (user-login-name)) "!"))
-      (setq dashboard-startup-banner 'logo)
-      (setq dashboard-center-content t)
-
-      ; Set no footer message
-      (setq dashboard-startupify-list
-	    (remove 'dashboard-insert-footer dashboard-startupify-list))
-
-      ; The widgets I use: bookmarks, org agenda and registers (syntax: "[Widget Name] . [N.B of items]")
-      (setq dashboard-items '((recents  . 5)
-      (bookmarks . 5)
-      (agenda . 5)
-      (registers . 5))))
-#+END_SRC
-
 ** On the fly syntax checking
 Flycheck provides modern on-the-fly syntax checking extension for multiple languages for Emacs.
 /See: [[https://github.com/flycheck/flycheck][flycheck (GitHub)]]/
