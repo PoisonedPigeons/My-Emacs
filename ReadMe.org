@@ -69,7 +69,7 @@ I create a new global minor-mode to enable display-line-numbers-mode in most mod
 #+BEGIN_SRC emacs-lisp
   (define-global-minor-mode my-global-display-line-numbers-mode
     display-line-numbers-mode (lambda () (when (not (memq major-mode
-    (list 'pdf-view-mode 'dashboard-mode 'vterm-mode)))
+    (list 'dashboard-mode 'vterm-mode)))
     (display-line-numbers-mode))))
 
   (my-global-display-line-numbers-mode 1)
@@ -116,7 +116,7 @@ Here I tell Emacs what not to include in the recently opened files list.
 #+begin_src emacs-lisp
   (setq recentf-exclude `(,(expand-file-name "~/.emacs.d/bookmarks") ,(expand-file-name "~/quicklisp/*")
 			  ,(expand-file-name "~/.emacs.d/feeds.org") ,(expand-file-name "~/.emacs.d/elfeed/*")
-			  ".*\.pdf" "/usr/include/*" "/usr/share/sbcl-source/*" "/tmp/*" "/usr/share/emacs/*"))
+			  "/usr/include/*" "/usr/share/sbcl-source/*" "/tmp/*" "/usr/share/emacs/*"))
 #+end_src
 ** Change font to "Hack" when using emacs from GUI
 Change emacs font to "Hack" and set font size to 10pt.
@@ -242,27 +242,6 @@ This mode highlights delimiters such as parentheses, brackets or braces accordin
     :config
     (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 #+end_src
-** Pdf-tools (pdf reader)
-Pdf-tools is a replacement for Docview. Starts in dark mode.
-/Source: [[https://github.com/politza/pdf-tools/blob/master/README.org][pdf-tools (Github)]]/
-
-#+BEGIN_SRC emacs-lisp
-  (use-package pdf-tools
-    :straight t
-    :config
-    (setq pdf-view-midnight-invert nil)
-    (pdf-tools-install)
-    (setq pdf-view-midnight-colors '("#bdbdb3" . "gray12"))
-    (add-hook 'pdf-tools-enabled-hook 'pdf-view-midnight-minor-mode)
-
-    ;; Use pdf-tools to open PDF files
-    (setq TeX-view-program-selection '((output-pdf "PDF Tools"))
-	  TeX-source-correlate-start-server t)
-
-    ;; Update PDF buffers after successful LaTeX runs
-    (add-hook 'TeX-after-compilation-finished-functions
-	      #'TeX-revert-document-buffer))
-#+END_SRC
 ** Language Server Protocol (LSP)
 The Language Server Protocol is protocol for use between editors/IDEs and servers that provide programming language-specific features.
 
