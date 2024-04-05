@@ -100,15 +100,17 @@ Close the current buffer using "kill-buffer-and-window" by pressing "C-x k" (glo
     (global-set-key (kbd "C-x C-z") nil)
     (global-set-key (kbd "C-z") nil))
 #+END_SRC
-** Recentf ignore certain files
-Here I tell Emacs what not to include in the recently opened files list.
-/See: [[https://emacs.stackexchange.com/questions/27139/ignoring-specific-files-in-recentf-mode][Ignoring specific files in recentf mode (emacs.stackexchange.com)]]/
+** Keeping track of recently opened files
+#+BEGIN_SRC emacs-lisp
+  ;; Start recentf globally at startup
+  (recentf-mode t)
 
-#+begin_src emacs-lisp
-  (setq recentf-exclude `(,(expand-file-name "~/.emacs.d/bookmarks") ,(expand-file-name "~/quicklisp/*")
-			  ,(expand-file-name "~/.emacs.d/feeds.org") ,(expand-file-name "~/.emacs.d/elfeed/*")
-			  "/usr/include/*" "/usr/share/sbcl-source/*" "/tmp/*" "/usr/share/emacs/*"))
-#+end_src
+  (global-set-key (kbd "C-c r") #'recentf-open)
+
+  ;; What not to include in the list of recently opened files
+  (setq recentf-exclude `(,(expand-file-name "~/quicklisp/*") "/usr/include/*"
+			  "/usr/share/sbcl-source/*" "/tmp/*" "/usr/share/emacs/*"))
+#+END_SRC
 ** Change font to "Hack" when using emacs from GUI
 Change emacs font to "Hack" and set font size to 10pt.
 
