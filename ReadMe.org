@@ -105,8 +105,6 @@ Close the current buffer using "kill-buffer-and-window" by pressing "C-x k" (glo
   ;; Start recentf globally at startup
   (recentf-mode t)
 
-  (global-set-key (kbd "C-c r") #'recentf-open)
-
   ;; What not to include in the list of recently opened files
   (setq recentf-exclude `(,(expand-file-name "~/quicklisp/*") "/usr/include/*"
 			  "/usr/share/sbcl-source/*" "/tmp/*" "/usr/share/emacs/*"))
@@ -256,7 +254,8 @@ Emacs now includes a LSP client called Eglot. Here I alias it to something easy 
     :bind (
 	   ("M-x" . helm-M-x)
 	   ("C-x C-f" . helm-find-files)
-	   ("C-x b" . helm-buffers-list))
+	   ("C-x b" . helm-buffers-list)
+	   ("C-c r" . helm-recentf))
     :custom
     (helm-move-to-line-cycle-in-source nil)
     :config
