@@ -63,7 +63,7 @@ My variables as set-up by Emacs, with minor modifications on my part.
 #+END_SRC
 ** Line Numbering
 #+BEGIN_SRC emacs-lisp
-  (global-display-line-numbers-mode t)
+  (add-hook 'prog-mode-hook #'display-line-numbers-mode)
 #+END_SRC
 ** Hide toolbar and scrollbar when using emacs from GUI
 #+BEGIN_SRC emacs-lisp
@@ -179,18 +179,12 @@ which-key is a minor mode for Emacs that displays the key bindings following you
 
 ** Magit (Git porcelain)
 Magit is an interface to Git implemented as an Emacs package. It aspires to be a complete Git porcelain.
-When using magit disable display-line-numbers-mode.
 /See: [[https://github.com/magit/magit][Magit (GitHub)]]/
 
 #+begin_src emacs-lisp
   (use-package magit
     :straight t
-    :bind* (
-	    ("C-x g" . magit-status)
-	    )
-    :config
-    (add-hook 'magit-mode-hook (lambda () (display-line-numbers-mode -1)))
-    )
+    :bind* ("C-x g" . magit-status))
 #+end_src
 
 ** Company-mode (Autocomplete)
@@ -248,7 +242,6 @@ Emacs now includes a LSP client called Eglot. Here I alias it to something easy 
 #+END_SRC
 ** Helm: incremental completions and narrowing selections
 #+BEGIN_SRC emacs-lisp
-  ;; TODO remove line numbers inside helm buffers
   (use-package helm
     :straight t
     :bind (
@@ -376,8 +369,7 @@ not kill the buffer when the shell is exited.
     :config
     (global-set-key (kbd "C-c t") 'vterm)
     (setq vterm-kill-buffer-on-exit nil)
-    (setq vterm-timer-delay nil)
-    (add-hook 'vterm-mode-hook (lambda () (display-line-numbers-mode -1))))
+    (setq vterm-timer-delay nil))
 #+END_SRC
 
 ** Highlight certain keywords
