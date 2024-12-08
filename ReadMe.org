@@ -75,13 +75,6 @@ My variables as set-up by Emacs, with minor modifications on my part.
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'default-frame-alist '(fullscreen . maximized))
 #+END_SRC
-** Disable annoying alarm bell
-Disable alarm bell in case it isn't already done on the system.
-/See: [[https://emacs.stackexchange.com/questions/28906/][how to switch off the sounds]]/
-
-#+BEGIN_SRC emacs-lisp
-(setq ring-bell-function 'ignore)
-#+END_SRC
 ** Confirm before exiting Emacs
 #+BEGIN_SRC emacs-lisp
 (setq confirm-kill-emacs 'y-or-n-p)
