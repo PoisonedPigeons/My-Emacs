@@ -39,6 +39,7 @@ My variables as set-up by Emacs, with minor modifications on my part.
   (custom-set-variables
    '(custom-enabled-themes '(tango-dark))
    '(org-startup-folded t)
+   '(inhibit-x-resources t)
    '(inhibit-startup-screen t)
    '(safe-local-variable-values
      '((vc-prepare-patches-separately)
